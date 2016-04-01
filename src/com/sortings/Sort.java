@@ -4,10 +4,10 @@ public class Sort {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		Integer intArray[] = {15,34,98,90,56,23,76,90};
+		Integer intArray[] = {35,34,98,90,56,23,76,90};
 		
 		ISort sort = new BubbleSort();
-		sort = new SelectionSort();
+		sort = new InsertionSort();
 		intArray = sort.sort(intArray);
 		printArray(intArray);
 		
