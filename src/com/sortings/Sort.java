@@ -7,7 +7,7 @@ public class Sort {
 		Integer intArray[] = {35,34,98,90,56,23,76,90};
 		
 		ISort sort = new BubbleSort();
-		sort = new InsertionSort();
+		sort = new QuickSort();
 		intArray = sort.sort(intArray);
 		printArray(intArray);
 		
