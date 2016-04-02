@@ -12,7 +12,11 @@ public class SinglyLinkedList <T>{
 	public NodeSLL<T> getHead() {
 		return head;
 	}
-
+	
+	public void setHead(NodeSLL<T> head) {
+		this.head = head;
+	}
+	
 	public NodeSLL<T> insertAtHead(T data){
 		NodeSLL<T> node = getNode(data);
 		
@@ -32,7 +36,7 @@ public class SinglyLinkedList <T>{
 		
 		NodeSLL<T> temp = head;
 		head = head.next;
-		
+		size--;
 		return temp;
 	}
 
@@ -66,7 +70,7 @@ public class SinglyLinkedList <T>{
 		}
 		
 		prev.next = null;
-		
+		size--;
 		return temp;
 	}
 	public NodeSLL<T> insertAtPosition(T data,int position){
@@ -115,22 +119,8 @@ public class SinglyLinkedList <T>{
 				temp.next = null;
 			}
 		}
-		
+		size--;
 		return temp;
-	}
-	
-	public void reverseLinksRecursive(NodeSLL<T> head){
-		if(head == null)
-			return;
-		if(head.next == null){
-			//base condition
-			return;
-		}
-		reverseLinksRecursive(head.next);
-		head.next.next = head;
-		head.next = null;
-		toString();
-		return;
 	}
 	
 	private NodeSLL<T> getNode(T data) {

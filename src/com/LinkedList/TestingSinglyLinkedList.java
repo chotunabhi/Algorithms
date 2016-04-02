@@ -16,14 +16,10 @@ public class TestingSinglyLinkedList {
 		System.out.println(integerSLL);
 		integerSLL.insertAtPosition(6, 4);
 		System.out.println(integerSLL);
+
+		ReversingLinks<Integer> rl = new ReversingLinks<>(integerSLL);
+		rl.reverseLinks(integerSLL.getHead());
 		
-		integerSLL.removeAtHead();
-		System.out.println(integerSLL);
-		
-		integerSLL.removeAtEnd();
-		System.out.println(integerSLL);
-		
-		integerSLL.reverseLinksRecursive(integerSLL.getHead());
 		System.out.println(integerSLL);
 	}
 
