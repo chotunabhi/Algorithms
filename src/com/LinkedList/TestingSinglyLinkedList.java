@@ -8,17 +8,13 @@ public class TestingSinglyLinkedList {
 		integerSLL.insertAtHead(1);
 		integerSLL.insertAtEnd(3);
 		integerSLL.insertAtEnd(5);
-		
-		System.out.println(integerSLL);
-		
 		integerSLL.insertAtHead(0);
-		
-		System.out.println(integerSLL);
 		integerSLL.insertAtPosition(6, 4);
+		integerSLL.insertAtEnd(7);
 		System.out.println(integerSLL);
 
 		ReversingLinks<Integer> rl = new ReversingLinks<>(integerSLL);
-		rl.reverseLinks(integerSLL.getHead());
+		rl.reverseKLinks(integerSLL.getHead(), 2);
 		
 		System.out.println(integerSLL);
 	}
