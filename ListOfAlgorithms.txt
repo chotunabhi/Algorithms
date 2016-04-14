@@ -1,5 +1,3 @@
 Linked List:
 ------------
-
-
 Create a Singly linked list.
