@@ -14,7 +14,10 @@ public class TestingSinglyLinkedList {
 		System.out.println(integerSLL);
 
 		ReversingLinks<Integer> rl = new ReversingLinks<>(integerSLL);
-		rl.reverseKLinks(integerSLL.getHead(), 2);
+//		ReversingLinks<Integer> rlCopy = rl.
+		integerSLL.setHead(rl.reverseKLinksRecursive(integerSLL.getHead(), 4));
+		System.out.println(integerSLL);
+		rl.reverseKLinks(integerSLL.getHead(), 4);
 		
 		System.out.println(integerSLL);
 	}
