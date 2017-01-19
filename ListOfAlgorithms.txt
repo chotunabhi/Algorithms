@@ -1,3 +1,9 @@
 Linked List:
 ------------
+<<<<<<< HEAD
 Create a Singly linked list.
+=======
+Create a Singly linked list.
+
+
+>>>>>>> refs/remotes/origin/officeCopy
