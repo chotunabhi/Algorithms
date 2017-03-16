@@ -1,7 +1,5 @@
 package com.LinkedList;
 
-import javax.swing.text.StyledEditorKit.BoldAction;
-
 public class ReversingLinks<T> {
 	SinglyLinkedList<T> sll;
 	private boolean setHead = Boolean.FALSE;
@@ -17,6 +15,7 @@ public class ReversingLinks<T> {
 			this.sll.setHead(head);
 			return;
 		}
+
 		reverseLinksRecursive(head.next);
 		head.next.next = head;
 		head.next = null;
@@ -37,69 +36,40 @@ public class ReversingLinks<T> {
 		this.sll.setHead(temp);
 	}
 
-	public NodeSLL<T> reverseKLinksRecursive(NodeSLL<T> head, int k) {
-		NodeSLL<T> current = head;
-		NodeSLL<T> next = null;
+	public void reverseKLinks(NodeSLL<T> head,int k){
+		int count = 0;
+
 		NodeSLL<T> prev = null;
-		int count = k;
+		NodeSLL<T> temp = null;
+		NodeSLL<T> tail = head;
+		NodeSLL<T> prevTail = head;
 
-		/* Reverse first k nodes of linked list */
-		while (current != null && count > 0) {
-			next = current.next;
-			current.next = prev;
-			prev = current;
-			current = next;
-			count--;
-		}
+		while(head != null ){
+			if(count == k){
+				if(!setHead){
+					this.sll.setHead(temp);
+					setHead = true;
+				}
 
-		/*
-		 * next is now a pointer to (k+1)th node Recursively call for the list
-		 * starting from current. And make rest of the list as next of first
-		 * node
-		 */
-		if (next != null)
-			head.next = reverseKLinksRecursive(next, k);
-
-		// prev is now head of input list
-		return prev;
-	}
-
-	public void reverseKLinks(NodeSLL<T> head, int k) {
-		NodeSLL<T> current = head;
-		NodeSLL<T> prevHead = head;
-		NodeSLL<T> prev = null;
-		NodeSLL<T> next = null;
-
-		boolean setHead = Boolean.FALSE;
-
-		while (current != null) {
-			int count = k;
-			prev = null;
-			//reverse k links
-			while (current != null && count > 0) {
-				next = current.next;
-				current.next = prev;
-				prev = current;
-				current = next;
-				count--;
-			}
-			
-			if(!setHead){
-				this.sll.setHead(prev);
-				setHead = Boolean.TRUE;
+				tail.next = head;
+				prevTail.next = temp;
+				prevTail = tail;
+				tail = head;
+				prev = null;
+				count = 0;
 			}else{
-				prevHead.next = prev;
-				prevHead = head;
+				temp = head;
+				head = head.next;
+				temp.next = prev;
+				prev = temp;
+				count++;
 			}
-			
-			head.next = current;
-			head = current;
-			
 		}
-	}
-	
-	public NodeSLL<T> cloneList(){
 		
+		prevTail.next = temp;
+	}
+	public NodeSLL<T> cloneList(){
+
 		return null;
 	}
 }

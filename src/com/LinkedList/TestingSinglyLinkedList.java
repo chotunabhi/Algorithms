@@ -11,13 +11,13 @@ public class TestingSinglyLinkedList {
 		integerSLL.insertAtHead(0);
 		integerSLL.insertAtPosition(6, 4);
 		integerSLL.insertAtEnd(7);
+		integerSLL.insertAtEnd(8);
+		integerSLL.insertAtEnd(9);
 		System.out.println(integerSLL);
 
 		ReversingLinks<Integer> rl = new ReversingLinks<>(integerSLL);
 //		ReversingLinks<Integer> rlCopy = rl.
-//		integerSLL.setHead(rl.reverseKLinksRecursive(integerSLL.getHead(), 4));
-		System.out.println(integerSLL);
-		rl.reverseKLinks(integerSLL.getHead(), 4);
+		rl.reverseKLinks(integerSLL.getHead(), 5);
 		
 		System.out.println(integerSLL);
 	}
