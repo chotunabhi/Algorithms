@@ -1,4 +1,4 @@
-package com.LinkedList;
+package com.linkedList;
 
 public class NodeSLL<T> {
 	public T data;

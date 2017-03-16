@@ -4,8 +4,8 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-import com.LinkedList.CircularListNode;
-import com.LinkedList.NodeSLL;
+import com.linkedList.CircularListNode;
+import com.linkedList.NodeSLL;
 
 public class JosephusTest {
 

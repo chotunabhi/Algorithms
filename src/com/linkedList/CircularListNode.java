@@ -1,4 +1,4 @@
-package com.LinkedList;
+package com.linkedList;
 
 public class CircularListNode<T> {
 	public NodeSLL<T> head = null;

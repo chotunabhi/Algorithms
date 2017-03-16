@@ -1,4 +1,4 @@
-package com.LinkedList;
+package com.linkedList;
 
 public class SinglyLinkedList <T>{
 	private NodeSLL<T> head;
