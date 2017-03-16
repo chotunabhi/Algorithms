@@ -36,7 +36,7 @@ public class ReversingLinks<T> {
 		this.sll.setHead(temp);
 	}
 
-	public void reverseKLinks(NodeSLL<T> head,int k){
+	public void reverseKLinks(NodeSLL<T> head, int k) {
 		int count = 0;
 
 		NodeSLL<T> prev = null;
@@ -44,9 +44,9 @@ public class ReversingLinks<T> {
 		NodeSLL<T> tail = head;
 		NodeSLL<T> prevTail = head;
 
-		while(head != null ){
-			if(count == k){
-				if(!setHead){
+		while (head != null) {
+			if (count == k) {
+				if (!setHead) {
 					this.sll.setHead(temp);
 					setHead = true;
 				}
@@ -57,7 +57,7 @@ public class ReversingLinks<T> {
 				tail = head;
 				prev = null;
 				count = 0;
-			}else{
+			} else {
 				temp = head;
 				head = head.next;
 				temp.next = prev;
@@ -65,11 +65,27 @@ public class ReversingLinks<T> {
 				count++;
 			}
 		}
-		
+
 		prevTail.next = temp;
 	}
-	public NodeSLL<T> cloneList(){
 
-		return null;
+	public NodeSLL<T> reverseKLinksRecursive(NodeSLL<T> head, int k) {
+		NodeSLL<T> current = head;
+		NodeSLL<T> next = null;
+		NodeSLL<T> prev = null;
+		int count = 0;
+
+		while (count++ < k && current != null){
+			next = current.next;
+			current.next = prev;
+			prev = current;
+			current = next;
+		}
+		
+		if(next != null){
+			head.next = reverseKLinksRecursive(next, k);
+		}
+		
+		return prev;
 	}
 }
