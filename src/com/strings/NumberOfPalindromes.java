@@ -1,4 +1,4 @@
-package com.miscellaneous;
+package com.strings;
 
 import java.io.BufferedReader;
 import java.io.IOException;
