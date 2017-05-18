@@ -2,6 +2,8 @@ package com.miscellaneous;
 
 import java.util.Arrays;
 
+import com.techgig.medium.CandidateCode1;
+
 public class Mode {
 	public static void main(String args[]) {
 		int[] a = { 1, 2, 3, 4, 4, 5, 5 };
