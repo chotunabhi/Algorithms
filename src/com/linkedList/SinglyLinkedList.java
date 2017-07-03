@@ -123,6 +123,10 @@ public class SinglyLinkedList <T>{
 		return temp;
 	}
 	
+	public void add(T data){
+		insertAtEnd(data);
+	}
+	
 	private NodeSLL<T> getNode(T data) {
 		NodeSLL<T> node = new NodeSLL<T>();
 		node.data = data;
