@@ -20,7 +20,7 @@ public class NewYearNeigbourParty {
  * 
  * Output Format
  * For each test case, print the ticket numbers in a single line forming the maximum sum in the format similar to Sample Test Case.
- * 
+ *  
  * Sample TestCase 1
  * Input
  * 5
