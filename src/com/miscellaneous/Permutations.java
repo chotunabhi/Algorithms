@@ -4,7 +4,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Permutations {
-	static List<String> permutations = null;
+	static List<String> permutations = new ArrayList<>();
+	
+	public static List<String> getPermutatedStringList(String string){
+		permutations = new ArrayList<>(fact(string.length()));
+		
+		permutation("",string);
+		return permutations;
+	}
 	
 	private static void permutation(String prefix, String str) {
 	    int n = str.length();
@@ -24,7 +31,7 @@ public class Permutations {
 		System.out.println(permutations);
 		System.out.println(permutations.size());
 		
-		permutations = new ArrayList<>(fact(s2.length()));
+		permutations.clear();
 		permutation("",s2);
 		System.out.println(permutations);
 		System.out.println(permutations.size());

@@ -3,6 +3,10 @@ package com.strings;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.List;
+
+import com.miscellaneous.Permutations;
+import com.miscellaneous.Set;
 
 public class LongestSubSequenceString {
 
@@ -14,9 +18,27 @@ public class LongestSubSequenceString {
 		String string1 = reader.readLine();
 		String string2 = reader.readLine();
 		
-		System.out.println("Longest common subsequence : "+longestCommonSubsequenceString(string1,string2));
+//		System.out.println("Longest common subsequence : "+longestCommonSubsequenceString(string1,string2));
+		System.out.println("Longest common subsequence : "+longestCommonSubsequenceStringBruteForce(string1,string2));
 	}
 
+	private static String longestCommonSubsequenceStringBruteForce(String string1, String string2) {
+		List<String> string1Sets = Set.getSubsets(string1);
+		List<String> string2Sets = Set.getSubsets(string2);
+		String lcss = null;
+		int maxLengthSubset = 0;
+
+		for(String subSet1 : string1Sets) {
+			for(String subSet2 : string2Sets) {
+				if(subSet1.equals(subSet2) && maxLengthSubset < subSet1.length()) {
+					maxLengthSubset = subSet1.length();
+					lcss = subSet2;
+				}
+			}
+		}
+		
+		return lcss;
+	}
 	private static String longestCommonSubsequenceString(String string1, String string2) {
 		StringBuffer subSequenceString = new StringBuffer();
 		int x = string1.length() + 1;
