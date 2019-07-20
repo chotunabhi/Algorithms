@@ -1,10 +1,10 @@
 package com.miscellaneous;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Permutations {
-	static HashSet<String> permutations = new HashSet<>();
+	static List<String> permutations = null;
 	
 	private static void permutation(String prefix, String str) {
 	    int n = str.length();
@@ -19,15 +19,19 @@ public class Permutations {
 		String s1 = "ABC";
 		String s2 = "ABCD";
 		
-		permutations.clear();
+		permutations = new ArrayList<>(fact(s1.length()));
 		permutation("",s1);
 		System.out.println(permutations);
 		System.out.println(permutations.size());
 		
-		permutations.clear();
+		permutations = new ArrayList<>(fact(s2.length()));
 		permutation("",s2);
 		System.out.println(permutations);
 		System.out.println(permutations.size());
 
+	}
+
+	private static int fact(int length) {
+		return (length ==0)? 1 : (length * fact(length -1));
 	}
 }
