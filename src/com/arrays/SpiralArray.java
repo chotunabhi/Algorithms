@@ -18,59 +18,53 @@ public class SpiralArray {
 	 * 
 	 */
 	public static void main(String[] args) throws IOException {
-		// TODO Auto-generated method stub
-		BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
-		
-		System.out.println("Enter dimension of 2 D Array ");
-		String dimensions = bufferedReader.readLine();
-		
-		String input[] = dimensions.split(" ");
-		
-		int rows = Integer.parseInt(input[0]);
-		int cols = Integer.parseInt(input[1]);
-//		int[][] a = new int[3][3];
-			
-//		for(int i = 0;i < rows;i++) {
-//			String rowData = bufferedReader.readLine();
-//			
-//			for(int j = 0 ; j < cols;j++) {
-//				String rd[] = rowData.split(" ");
-//				
-//				a[i][j] = Integer.parseInt(rd[j]);
-//			}
-//		}
-//		
 		int a[][] = {
 				 {1,2,3,10},
 				 {4,5,6,11},
 				 {7,8,9,12}
+//				 ,{13,14,15,16}
+//				 ,{17,18,19,20}
 		 };
 		
 		int rowStart = 0;
-		int rowEnd = a.length;
+		int rowEnd = a.length - 1 ;
 		int colStart = 0;
-		int colEnd = a[0].length;
+		int colEnd = a[0].length - 1;
 		
 		while(rowStart <= rowEnd || colStart <= colEnd) {
-			printArrayOneRound(rowStart, rowEnd, colStart, colEnd, a);
+			for(int i=colStart;i<=colEnd;i++)
+				System.out.print(a[rowStart][i]+" ");
+			
 			rowStart++;
-			rowEnd--;
-			colStart++;
+			for(int i = rowStart;i <= rowEnd;i++)
+				System.out.print(a[i][colEnd]+" ");
+			
 			colEnd--;
+			for(int i = colEnd ;i >= colStart && rowStart<=rowEnd ;i--)
+				System.out.print(a[rowEnd][i]+" ");
+			
+			rowEnd--;
+			for(int i = rowEnd ;i >= rowStart && colStart<=colEnd;i--)
+				System.out.print(a[i][colStart]+" ");
+			
+			colStart++;
 		}
 	}
 
 	private static void printArrayOneRound(int startRow,int endRow,int startCol,int endCol,int[][] a) {
-		System.err.println("inside method");
+//		System.out.println("inside method");
+		
+//		System.out.println("Loop 1 :"+startCol+" , "+endCol);
 		for(int i=startCol;i<endCol;i++)
 			System.out.print(a[startRow][i]+" ");
-			
+	
+//		System.out.println("\nLoop 2 :"+startRow+" , "+endRow);	
 		for(int i=(startRow+1);i<endRow;i++)
 			System.out.print(a[i][endCol-1]+" ");
-		
+//		System.out.println("\nLoop 3 :"+startCol+" , "+endCol);
 		for(int i=(endCol-2);i>=startCol;i--)
 			System.out.print(a[endRow-1][i]+" ");
-			
+//		System.out.println("\nLoop 4 :"+startRow+" , "+endRow);
 		for(int i=(endRow-2);i>=(startRow+1);i--)
 			System.out.print(a[i][startCol]+" ");
 	}
