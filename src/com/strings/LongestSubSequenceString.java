@@ -19,10 +19,10 @@ public class LongestSubSequenceString {
 		String string2 = reader.readLine();
 		
 //		System.out.println("Longest common subsequence : "+longestCommonSubsequenceString(string1,string2));
-		System.out.println("Longest common subsequence : "+longestCommonSubsequenceStringBruteForce(string1,string2));
+		System.out.println("Longest common subsequence : "+longestCommonSubsequenceString(string1,string2));
 	}
 
-	private static String longestCommonSubsequenceStringBruteForce(String string1, String string2) {
+	private static String longestCommonSubsequenceString(String string1, String string2) {
 		List<String> string1Sets = Set.getSubsets(string1);
 		List<String> string2Sets = Set.getSubsets(string2);
 		String lcss = null;
@@ -39,7 +39,7 @@ public class LongestSubSequenceString {
 		
 		return lcss;
 	}
-	private static String longestCommonSubsequenceString(String string1, String string2) {
+	private static String longestCommonSubsequenceStringDP(String string1, String string2) {
 		StringBuffer subSequenceString = new StringBuffer();
 		int x = string1.length() + 1;
 		int y = string2.length() + 1;
