@@ -12,14 +12,19 @@ public class LongestSubSequenceString {
 
 	public static void main(String[] args) throws IOException {
 		// TODO Auto-generated method stub
+		String str = "a,"+null;
+		String [] strs = str.split(",");
+		System.out.println(strs[0]);
+		System.out.println(strs[1].equals("null"));
+		/*
 		BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 		
 		System.out.println("Enter 2 Strings :");
 		String string1 = reader.readLine();
 		String string2 = reader.readLine();
 		
+		System.out.println("Longest common subsequence : "+longestCommonSubsequenceString(string1,string2));*/
 //		System.out.println("Longest common subsequence : "+longestCommonSubsequenceString(string1,string2));
-		System.out.println("Longest common subsequence : "+longestCommonSubsequenceString(string1,string2));
 	}
 
 	private static String longestCommonSubsequenceString(String string1, String string2) {
