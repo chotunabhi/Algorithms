@@ -50,22 +50,4 @@ public class SpiralArray {
 			colStart++;
 		}
 	}
-
-	private static void printArrayOneRound(int startRow,int endRow,int startCol,int endCol,int[][] a) {
-//		System.out.println("inside method");
-		
-//		System.out.println("Loop 1 :"+startCol+" , "+endCol);
-		for(int i=startCol;i<endCol;i++)
-			System.out.print(a[startRow][i]+" ");
-	
-//		System.out.println("\nLoop 2 :"+startRow+" , "+endRow);	
-		for(int i=(startRow+1);i<endRow;i++)
-			System.out.print(a[i][endCol-1]+" ");
-//		System.out.println("\nLoop 3 :"+startCol+" , "+endCol);
-		for(int i=(endCol-2);i>=startCol;i--)
-			System.out.print(a[endRow-1][i]+" ");
-//		System.out.println("\nLoop 4 :"+startRow+" , "+endRow);
-		for(int i=(endRow-2);i>=(startRow+1);i--)
-			System.out.print(a[i][startCol]+" ");
-	}
 }
