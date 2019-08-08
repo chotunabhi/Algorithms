@@ -4,6 +4,7 @@ public class BinaryNode implements Cloneable {
 	int data;
 	BinaryNode left;
 	BinaryNode right;
+	int height;
 
 	public BinaryNode(int data) {
 		this.data = data;
