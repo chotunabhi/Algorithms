@@ -19,9 +19,9 @@ public class TestingSinglyLinkedList {
 //		ReversingLinks<Integer> rlCopy = rl.
 		rl.reverseKLinks(integerSLL.getHead(), 3);
 		System.out.println(integerSLL);
-		integerSLL.setHead(rl.reverseKLinksRecursive(integerSLL.getHead(), 3));
-		
-		System.out.println(integerSLL);
+//		integerSLL.setHead(rl.reverseKLinksRecursive(integerSLL.getHead(), 3));
+//		
+//		System.out.println(integerSLL);
 	}
 
 }

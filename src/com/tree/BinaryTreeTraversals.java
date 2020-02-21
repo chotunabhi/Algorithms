@@ -1,6 +1,7 @@
 package com.tree;
 
 import java.util.LinkedList;
+import java.util.Queue;
 import java.util.Stack;
 
 public class BinaryTreeTraversals {
@@ -132,5 +133,28 @@ public class BinaryTreeTraversals {
 			
 		return listOfNodes;
 			
+	}
+	
+	public static LinkedList<BinaryNode> levelOrderTraversal(BinaryNode root){
+		listOfNodes.clear();
+		
+		if(root != null) {
+			Queue<BinaryNode> nodesQueue = new LinkedList<>();
+			nodesQueue.offer(root);
+			
+			while(!nodesQueue.isEmpty()) {
+				BinaryNode node = nodesQueue.poll();
+				
+				listOfNodes.add(node);
+				
+				if(node.left != null)
+					nodesQueue.offer(node.left);
+				
+				if(node.right != null)
+					nodesQueue.offer(node.right);
+			}
+		}
+		
+		return listOfNodes;
 	}
 }

@@ -37,36 +37,53 @@ public class ReversingLinks<T> {
 	}
 
 	public void reverseKLinks(NodeSLL<T> head, int k) {
-		int count = 0;
+
+		/*
+		 * int count = 0;
+		 * 
+		 * NodeSLL<T> prev = null; NodeSLL<T> temp = null; NodeSLL<T> tail = head;
+		 * NodeSLL<T> prevTail = head;
+		 * 
+		 * while (head != null) { if (count == k) { if (!setHead) {
+		 * this.sll.setHead(temp); setHead = true; }
+		 * 
+		 * tail.next = head; prevTail.next = temp; prevTail = tail; tail = head; prev =
+		 * null; count = 0; } else { temp = head; head = head.next; temp.next = prev;
+		 * prev = temp; count++; } }
+		 * 
+		 * prevTail.next = temp;
+		 */
 
 		NodeSLL<T> prev = null;
-		NodeSLL<T> temp = null;
-		NodeSLL<T> tail = head;
-		NodeSLL<T> prevTail = head;
+		NodeSLL<T> current = head;
+		NodeSLL<T> newHead = null;
+		NodeSLL<T> prevTail = null;
+		int count = 1;
 
-		while (head != null) {
-			if (count == k) {
-				if (!setHead) {
-					this.sll.setHead(temp);
-					setHead = true;
+		while (current != null) {
+			NodeSLL<T> temp = current.next;
+			current.next = prev;
+			prev = current;
+
+			current = temp;
+
+			if (count % k == 0 || current == null) {
+				if (newHead == null) {
+					newHead = prev;
+					prevTail = head;
 				}
 
-				tail.next = head;
-				prevTail.next = temp;
-				prevTail = tail;
-				tail = head;
+				prevTail.next = prev;
+				head.next = current;
 				prev = null;
-				count = 0;
-			} else {
-				temp = head;
-				head = head.next;
-				temp.next = prev;
-				prev = temp;
-				count++;
-			}
-		}
 
-		prevTail.next = temp;
+				prevTail = head;
+				head = current;
+			}
+			count++;
+		}
+		
+		this.sll.setHead(newHead);
 	}
 
 	public NodeSLL<T> reverseKLinksRecursive(NodeSLL<T> head, int k) {
@@ -75,17 +92,17 @@ public class ReversingLinks<T> {
 		NodeSLL<T> prev = null;
 		int count = 0;
 
-		while (count++ < k && current != null){
+		while (count++ < k && current != null) {
 			next = current.next;
 			current.next = prev;
 			prev = current;
 			current = next;
 		}
-		
-		if(next != null){
+
+		if (next != null) {
 			head.next = reverseKLinksRecursive(next, k);
 		}
-		
+
 		return prev;
 	}
 }
