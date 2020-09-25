@@ -60,6 +60,7 @@ class ShoppingMart {
 				List<String> subChildren = findLeaves(child);
 				for(String subChild : subChildren) {
 					returnList.add((parentNode != null) ? parentNode + " > " + subChild : subChild);
+					System.out.println(returnList);
 				}
 			}
 		}
@@ -76,7 +77,7 @@ class ShoppingMart {
 public class AllParentToLeafNavigations {
 	public static void main(String[] args) {
 		ShoppingMart sMart = new ShoppingMart();
-		sMart.addRelation(null, new String[]{"Men", "Women", "Electronics"});
+		sMart.addRelation(null, new String[]{"Men"/*, "Women", "Electronics"*/});
 		sMart.addRelation("Men", new String[]{"Footwear", "Clothes", "Watches"});
 		sMart.addRelation("Women", new String[]{"Footwear", "Clothes", "Watches"});
 		sMart.addRelation("Electronics", new String[]{"Premium", "Regular"});
@@ -85,10 +86,10 @@ public class AllParentToLeafNavigations {
 		sMart.addRelation("Watches", new String[]{"Mechanical", "Quartz"});
 		sMart.addRelation("Formals", new String[]{"Premium", "Regular"});
 		sMart.addRelation("Mechanical", new String[]{"Premium", "Regular"});
-		System.out.println(sMart.toString());
-		
-		for(String relation : sMart.findLeaves(null)) {
-			System.out.println(relation);
-		}
+//		System.out.println(sMart.toString());
+		sMart.findLeaves(null);
+//		for(String relation : sMart.findLeaves(null)) {
+//			System.out.println(relation);
+//		}
 	}
 }
