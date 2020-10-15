@@ -13,6 +13,7 @@ public class InsertionSort {
 		insertionSort(sll);
 	}
 
+	@SuppressWarnings({ "unchecked" })
 	private static <T extends Comparable<T>> void insertionSort(SinglyLinkedList<T> list){
 		NodeSLL<T> head = list.getHead();
 
@@ -29,7 +30,6 @@ public class InsertionSort {
 			temp = temp.next;
 		}
 
-		NodeSLL<T> beforeStartPointer = prev;
 		NodeSLL<T> tail = temp;
 
 		while(startPointer != null){
