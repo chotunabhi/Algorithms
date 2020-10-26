@@ -11,7 +11,7 @@ public class BinaryTreePuzzles {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		BinaryNode root = BinaryTreeUtil.buildTree();
-		System.out.println(BinaryTreeTraversals.levelOrderTraversal(root));
+//		System.out.println(BinaryTreeTraversals.levelOrderTraversal(root));
 //		mirrorBinaryTree(root);
 //		System.out.println(BinaryTreeTraversals.levelOrderTraversal(root));
 //		BinaryNode ancestor = leastCommonAncestor(root, 4, 3);
@@ -32,7 +32,12 @@ public class BinaryTreePuzzles {
 //		System.out.println(pathExistsWithSum(root, 6));
 
 //		verticalSum(root);
-		printSingleNodes(root);
+//		printSingleNodes(root);
+		
+//		System.out.println("Width of Binary Tree : "+BinaryTreeUtil.widthOfBT(root));
+//		System.out.println("Width of Binary Tree : "+BinaryTreeUtil.widthInclusiveNullNodes(root));
+		
+		System.out.println(BinaryTreeUtil.pathBetweenNodes(root, 8, 7));
 	}
 
 	public static void printSingleNodes(BinaryNode root) {

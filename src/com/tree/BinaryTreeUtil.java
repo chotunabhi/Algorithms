@@ -3,10 +3,24 @@ package com.tree;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.HashMap;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Queue;
 
+import com.sun.org.apache.xpath.internal.operations.Bool;
+
 public class BinaryTreeUtil {
+	private static List<Integer> leftMostNodesPosition = new LinkedList<>();
+	private static int width = 0;
+	private static int numberOfLeaves = 0;
+	
+	public static void clear() {
+		leftMostNodesPosition.clear();
+		width = 0;
+		numberOfLeaves = 0;
+	}
+	
 	public static BinaryNode buildTree() {
 		BinaryNode root = null;
 		System.out.print("Enter Data for root Node : ");
@@ -123,6 +137,39 @@ public class BinaryTreeUtil {
 
 		return elementExist;
 	}
+	
+	public static boolean elementExistInBST(BinaryNode root,int element) {
+		boolean elementExist = Boolean.FALSE;
+		
+		if(root == null)
+			elementExist = Boolean.FALSE;
+		else if(root.data == element)
+			elementExist = Boolean.TRUE;
+		else if(root.data > element)
+			elementExist = elementExistInBST(root.left, element);
+		else if(root.data < element)
+			elementExist = elementExistInBST(root.right, element);
+		
+		return elementExist;
+	}
+	
+	public static boolean elementExistInBSTIterative(BinaryNode root,int element) {
+		boolean elementExist = Boolean.FALSE;
+		
+		if(root != null) {
+			while(root != null) {
+				if(root.data == element) {
+					elementExist = Boolean.TRUE;
+					break;
+				}else if(root.data < element)
+					root = root.right;
+				else if(root.data > element)
+					root = root.left;
+			}
+		}
+		
+		return elementExist;
+	}
 
 	public static BinaryNode insertElement(BinaryNode root, int data) {
 		if (root != null) {
@@ -188,6 +235,7 @@ public class BinaryTreeUtil {
 		
 		return Math.max((lHeight + rHeight + 1), Math.max(lDiameter, rDiameter));
 	}
+	
 	public static int minInBT(BinaryNode root) {
 		int min = Integer.MAX_VALUE;
 
@@ -209,5 +257,129 @@ public class BinaryTreeUtil {
 		}
 
 		return min;
+	}
+	
+	public static int numberOfLeavesRec(BinaryNode root) {
+		if(root == null)
+			return 0;
+		
+		if(root.left == null && root.right == null)
+			return 1;
+		
+		return numberOfLeavesRec(root.left) + numberOfLeavesRec(root.right);
+	}
+	
+	public static int numberOfFullLeavesRec(BinaryNode root) {
+
+		if(root == null)
+			return 0;
+	
+		if(root.left != null && root.right != null)
+			numberOfLeaves++;
+		
+		numberOfFullLeavesRec(root.left);
+		numberOfFullLeavesRec(root.right);
+		
+		return numberOfLeaves;
+	}
+	
+	public static int widthOfBT(BinaryNode root) {
+		int width = 0;
+		
+		if(root != null) {
+			Queue<BinaryNode> nodesQueue = new LinkedList<BinaryNode>();
+			
+			nodesQueue.offer(root);
+			nodesQueue.offer(null);
+			int w = 0;
+			
+			while(!nodesQueue.isEmpty()) {
+				BinaryNode node = nodesQueue.poll();
+				
+				if(node != null) {
+					if(node.left != null)
+						nodesQueue.offer(node.left);
+					
+					if(node.right != null)
+						nodesQueue.offer(node.right);
+					
+					w++;
+				}else {
+					if(!nodesQueue.isEmpty()) {
+						width = Math.max(w, width);
+						w = 0;
+						
+						nodesQueue.offer(null);
+					}
+				}
+			}
+		}
+		
+		return width;
+	}
+	
+	public static int widthInclusiveNullNodes(BinaryNode root) {
+		return widthInclusiveNullNodesHelper(root, 1, 1);
+	}
+	
+	private static int widthInclusiveNullNodesHelper(BinaryNode root,int level,int position) {
+		if(root == null)
+			return 0;
+		
+		if(level > leftMostNodesPosition.size())
+			leftMostNodesPosition.add(position);
+		
+		widthInclusiveNullNodesHelper(root.left,level+1,position*2);
+		widthInclusiveNullNodesHelper(root.right,level+1,position*2+1);
+		
+		width = Math.max(width, position - leftMostNodesPosition.get(level-1) + 1);
+		
+		return width;
+	}
+
+	public static List<Integer> pathBetweenNodes(BinaryNode root,int a,int b){
+		List<Integer> pathA = pathOfNode(root,a);
+		List<Integer> pathB = pathOfNode(root,b);
+		int i = 0;
+		
+		while(i < Math.min(pathA.size(),pathB.size()) && pathA.get(i) == pathB.get(i))
+			i++;
+		
+		i--;
+		
+		List<Integer> path = new LinkedList<>();
+		
+		if(i != pathA.size() || i != pathB.size()) {
+			for(int j = pathA.size() - 1; j > i;j--)
+				path.add(pathA.get(j));
+			
+			path.addAll(pathB.subList(i, pathB.size()));
+		}
+		
+		return path;
+	}
+	public static List<Integer> pathOfNode(BinaryNode root,int x){
+		List<Integer> pathList = new LinkedList<Integer>();
+		
+		pathExist(root,x,pathList);
+			
+		return pathList;
+	}
+
+	private static boolean pathExist(BinaryNode root, int x, List<Integer> pathList) {
+		if(root == null)
+			return false;
+		
+		pathList.add(root.data);
+		
+		if(root.data == x)
+			return true;
+		
+		if(pathExist(root.left, x, pathList) || pathExist(root.right, x, pathList))
+			return true;
+		
+		pathList.remove(pathList.size() - 1);
+		
+		return false;
 	}
 }

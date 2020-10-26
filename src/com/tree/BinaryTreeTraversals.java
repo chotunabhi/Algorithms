@@ -7,6 +7,10 @@ import java.util.Stack;
 public class BinaryTreeTraversals {
 	static LinkedList<BinaryNode> listOfNodes = new LinkedList<>();
 	
+	public static void clear() {
+		if(listOfNodes != null)
+			listOfNodes.clear();
+	}
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		BinaryNode root = BinaryTreeUtil.buildTree();
@@ -18,20 +22,20 @@ public class BinaryTreeTraversals {
 //		System.out.println(listOfNodes);
 //		listOfNodes.clear();
 //
-//		listOfNodes = inOrderIterative(root);
-//		System.out.println(listOfNodes);
-//		listOfNodes.clear();
-//		
-//		inOrder(root,listOfNodes);
-//		System.out.println(listOfNodes);
-//		listOfNodes.clear();
-		
-		postOrder(root,listOfNodes);
+		listOfNodes = inOrderIterative(root);
 		System.out.println(listOfNodes);
 		listOfNodes.clear();
 		
-		postOrderIterative(root);
+		inOrder(root,listOfNodes);
 		System.out.println(listOfNodes);
+		listOfNodes.clear();
+//		
+//		postOrder(root,listOfNodes);
+//		System.out.println(listOfNodes);
+//		listOfNodes.clear();
+//		
+//		postOrderIterative(root);
+//		System.out.println(listOfNodes);
 	}
 
 	public static void preOrder(BinaryNode root,LinkedList<BinaryNode> listNodes) {
@@ -46,18 +50,18 @@ public class BinaryTreeTraversals {
 		if(root == null)
 			return listOfNodes;
 		
-		Stack<BinaryNode> binaryStack = new Stack<>();
-		binaryStack.push(root);
+		Stack<BinaryNode> stack = new Stack<>();
+		stack.push(root);
 		
-		while(!binaryStack.isEmpty()) {
-			BinaryNode currentNode = binaryStack.pop();
+		while(!stack.isEmpty()) {
+			BinaryNode node = stack.pop();
 			
-			listOfNodes.add(currentNode);
+			listOfNodes.add(node);
 			
-			if(currentNode.right != null)
-				binaryStack.push(currentNode.right);
-			if(currentNode.left != null)
-				binaryStack.push(currentNode.left);
+			if(node.right != null)
+				stack.push(node.right);
+			if(node.left != null)
+				stack.push(node.left);
 		}
 		
 		return listOfNodes;
@@ -75,21 +79,23 @@ public class BinaryTreeTraversals {
 		if(root == null)
 			return listOfNodes;
 		
-		Stack<BinaryNode> binaryStack = new Stack<>();
-		BinaryNode currentNode = root;
-		
-		while(currentNode != null || !binaryStack.isEmpty()) {
+		Stack<BinaryNode> stack = new Stack<BinaryNode>();
+		BinaryNode current = root;
+		boolean done = false;
 
-			while(currentNode != null) {
-				binaryStack.add(currentNode);
-				currentNode = currentNode.left;
+		while(!done) {
+			if(current != null) {
+				stack.push(current);
+				current = current.left;
+			}else {
+				if(stack.isEmpty())
+					done = true;
+				else {
+					current = stack.pop();
+					listOfNodes.add(current);
+					current = current.right;
+				}
 			}
-			
-			currentNode = binaryStack.pop();
-			
-			listOfNodes.add(currentNode);
-			
-			currentNode = currentNode.right;
 		}
 		
 		return listOfNodes;
@@ -105,30 +111,28 @@ public class BinaryTreeTraversals {
 	
 	public static LinkedList<BinaryNode> postOrderIterative(BinaryNode root) {
 		if(root != null) {
-			BinaryNode current = root,prev = null;
+			BinaryNode current,prev = null;
 			
-			Stack<BinaryNode> binaryStack = new Stack<>();
-			binaryStack.push(root);
+			Stack<BinaryNode> stack = new Stack<BinaryNode>();
+			stack.push(root);
 			
-			while(!binaryStack.isEmpty()) {
-				current = binaryStack.peek();
+			while(!stack.isEmpty()) {
+				current = stack.peek();
 				
 				if(prev == null || prev.left == current || prev.right == current) {
 					if(current.left != null)
-						binaryStack.push(current.left);
+						stack.push(current.left);
 					else if(current.right != null)
-						binaryStack.push(current.right);
+						stack.push(current.right);
 				}else if(current.left == prev) {
 					if(current.right != null)
-						binaryStack.push(current.right);
+						stack.push(current.right);
 				}else {
-					listOfNodes.add(current);
-					binaryStack.pop();
+					listOfNodes.add(stack.pop());
 				}
 				
 				prev = current;
 			}
-			
 		}
 			
 		return listOfNodes;
