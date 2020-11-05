@@ -38,6 +38,7 @@ public class BinaryTreePuzzles {
 //		System.out.println("Width of Binary Tree : "+BinaryTreeUtil.widthInclusiveNullNodes(root));
 		
 		System.out.println(BinaryTreeUtil.pathBetweenNodes(root, 8, 7));
+		BinaryTreePuzzles.printPathBetweenNodes(root, 8, 7);
 	}
 
 	public static void printSingleNodes(BinaryNode root) {
@@ -110,8 +111,8 @@ public class BinaryTreePuzzles {
 		printAllAncestors(commonAncestor, a);
 		printAllAncestors(commonAncestor, b);
 
-		pathList.add(0, a);
-		pathList.set(pathList.size() - 1, b);
+//		pathList.add(0, a);
+//		pathList.set(pathList.size() - 1, b);
 
 		System.out.println(pathList);
 
@@ -137,7 +138,8 @@ public class BinaryTreePuzzles {
 		if (root == null)
 			return false;
 
-		if ((root.left != null && root.left.data == data) || (root.right != null && root.right.data == data)
+		if (/*(root.left != null && root.left.data == data) || (root.right != null && root.right.data == data)*/
+				root.data == data
 				|| printAllAncestors(root.left, data) || printAllAncestors(root.right, data)) {
 			pathList.add(root.data);
 			return true;

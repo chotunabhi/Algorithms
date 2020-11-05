@@ -14,7 +14,8 @@ public class TestGraph {
 		graph.printGraph();
 		
 		GraphManipulations gm = new GraphManipulations(graph);
-//		gm.BFS(1);
+		gm.BFS(0);
+		System.out.println();
 		gm.DFS(0);
 		System.out.println();
 		gm.DFSRecursive(0);

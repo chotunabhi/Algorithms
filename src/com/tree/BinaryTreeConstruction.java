@@ -6,20 +6,24 @@ public class BinaryTreeConstruction {
 		int[] inOrder = {4,2,5,1,6,3};
 		int[] preOrder = {1,2,4,5,3,6};
 		
-		BinaryNode root = new BinaryTreeConstruction().InorderPreorderBinaryTree(inOrder, 0, inOrder.length-1, preOrder, 0);
+		BinaryNode root = new BinaryTreeConstruction().InorderPreorderBinaryTree(inOrder, 0, inOrder.length-1, preOrder, 0,preOrder.length -1);
 		
 		System.out.println(BinaryTreeTraversals.inOrderIterative(root));
 	}
 	
-	public BinaryNode InorderPreorderBinaryTree(int[] inOrder,int iStart,int iEnd,int[] preOrder,int preStart) {
-		if(iStart < 0 || iEnd >= inOrder.length)
+	public BinaryNode InorderPreorderBinaryTree(int[] inOrder,int iStart,int iEnd,int[] preOrder,int preStart,int preEnd) {
+		if(iStart > iEnd)
 			return null;
 		
-		iStart = getIndexOfElement(inOrder, preOrder[preStart]);
+		if(preStart > preEnd)
+			return null;
 		
-		BinaryNode node = new BinaryNode(preOrder[preStart]);
-		node.left = InorderPreorderBinaryTree(inOrder, 0 , iStart - 1 , preOrder, preStart+1);
-		node.right = InorderPreorderBinaryTree(inOrder, iStart + 1 , iEnd , preOrder, preStart+1);
+		int element = preOrder[preStart];
+		int offset = getIndexOfElement(preOrder, element);
+		BinaryNode node = new BinaryNode(element);
+		
+		node.left = InorderPreorderBinaryTree(inOrder, iStart , offset - 1, preOrder, preStart + 1, preStart + offset - iStart);
+		node.right = InorderPreorderBinaryTree(inOrder, offset + 1, iEnd, preOrder, preStart + offset  - iStart + 1, preEnd);
 		
 		return node;
 	}
