@@ -128,9 +128,8 @@ public class SinglyLinkedList <T>{
 	}
 	
 	private NodeSLL<T> getNode(T data) {
-		NodeSLL<T> node = new NodeSLL<T>();
-		node.data = data;
-		node.next = null;
+		NodeSLL<T> node = new NodeSLL<T>(data);
+		
 		return node;
 	}
 

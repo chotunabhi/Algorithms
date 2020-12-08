@@ -121,7 +121,7 @@ public class CircularListNode<T> {
 	}
 
 	private NodeSLL<T> getNode(T value) {
-		NodeSLL<T> node = new NodeSLL<>();
+		NodeSLL<T> node = new NodeSLL<>(value);
 		node.data = value;
 		node.next = node;
 
