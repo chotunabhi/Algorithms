@@ -7,5 +7,4 @@ public class NodeSLL<T>{
 	public NodeSLL(T data){
 		this.data = data;
 	}
-	
 }
