@@ -5,7 +5,8 @@ import java.util.Hashtable;
 import com.dsnalgomadeeasy.linkedList.common.NodeSLL;
 
 public class NthNodeFromEndOfSLL {
-
+	private static int position = 0;
+	
 	public static void main(String[] args) {
 		NodeSLL<Integer> node = new NodeSLL<>(1);
 		NodeSLL<Integer> next = node;
@@ -25,7 +26,9 @@ public class NthNodeFromEndOfSLL {
 //		System.out.println(new NthNodeFromEndOfSLL().bruteForce(node, -1));
 //		System.out.println(new NthNodeFromEndOfSLL().usingStack(node, -1));
 //		System.out.println(new NthNodeFromEndOfSLL().usingHT(node, 10));
-		System.out.println(new NthNodeFromEndOfSLL().usingLengthOfSLL(node, -2));
+//		System.out.println(new NthNodeFromEndOfSLL().usingLengthOfSLL(node, -2));
+//		System.out.println(new NthNodeFromEndOfSLL().usingStack(node, 10));
+		System.out.println(new NthNodeFromEndOfSLL().usingRecursion(node, 5));
 	}
 
 	private <T> T bruteForce(NodeSLL<T> sll,int n){
@@ -145,5 +148,45 @@ public class NthNodeFromEndOfSLL {
 		
 		return data;
 	}
+	
+	private<T> T usingOnePass(NodeSLL<T> sll,int n) {
+		T data = null;
+		
+		if(sll == null) {
+			System.out.println("List is null");
+		}else if(n <= 0) {
+			System.out.println("n should be >= 0");
+		}else {
+			NodeSLL<T> advPointer = sll;
+			NodeSLL<T> dataPointer = sll;
+			
+			while(n-- > 1) 
+				advPointer = advPointer.getNext();
+			
+			while(advPointer != null) {
+				dataPointer = dataPointer.getNext();
+				advPointer = advPointer.getNext();
+			}
+			
+			if(dataPointer != null)
+				data = dataPointer.getData();
+		}
+		return data;
+	}
 
+	private<T> T usingRecursion(NodeSLL<T> sll,int n) {
+		T data = null;
+		
+		if(sll != null) {
+			data = usingRecursion(sll.getNext(), n);
+		}
+		
+		if(position == n && sll != null) {
+			data = sll.getData();
+		}
+		
+		position++;
+		
+		return data;
+	}
 }
