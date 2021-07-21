@@ -1,6 +1,6 @@
 package com.dsnalgomadeeasy.linkedList.common;
 
-public class NodeSLL<T> {
+public class NodeSLL<T extends Comparable<T>> {
 	private NodeSLL<T> next;
 	private T data;
 	

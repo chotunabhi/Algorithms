@@ -11,32 +11,34 @@ public class CycleInSLL {
 		NodeSLL<Integer> next = head;
 		NodeSLL<Integer> loop = null;
 		
-//		next.setNext(new NodeSLL<>(2));
-//		next = next.getNext();
-//		
-//		next.setNext(new NodeSLL<>(3));
-//		next = next.getNext();
+		next.setNext(new NodeSLL<>(2));
+		next = next.getNext();
+		
+		next.setNext(new NodeSLL<>(3));
+		next = next.getNext();
 		loop = next;
-//		
-//		next.setNext(new NodeSLL<>(4));
-//		next = next.getNext();
-//		
-//		next.setNext(new NodeSLL<>(5));
-//		next = next.getNext();
-//		
-//		next.setNext(new NodeSLL<>(6));
-//		next = next.getNext();
-//		
-//		next.setNext(new NodeSLL<>(7));
-//		next = next.getNext();
+		
+		next.setNext(new NodeSLL<>(4));
+		next = next.getNext();
+		
+		next.setNext(new NodeSLL<>(5));
+		next = next.getNext();
+		
+		next.setNext(new NodeSLL<>(6));
+		next = next.getNext();
+		
+		next.setNext(new NodeSLL<>(7));
+		next = next.getNext();
 		
 //		next.setNext(loop);
+//		head = null;
+		
 		
 		System.out.println(new CycleInSLL().usingHashTable(head));
-		System.out.println(new CycleInSLL().usingHashTable(head));
+		System.out.println(new CycleInSLL().usingSinglePass(head));
 	}
 	
-	private <T> boolean usingHashTable(NodeSLL<T> head) {
+	private <T extends Comparable<T>>  boolean usingHashTable(NodeSLL<T> head) {
 		Boolean hasCycle = false;
 		
 		NodeSLL<T> node = head;
@@ -52,17 +54,18 @@ public class CycleInSLL {
 		return hasCycle;
 	}
 	
-	private <T> boolean usingSinglePass(NodeSLL<T> head) {
+	private <T extends Comparable<T>>  boolean usingSinglePass(NodeSLL<T> head) {
 		Boolean hasCycle = false;
 		
-		NodeSLL<T> slowPointer = head,fastPointer = head.getNext();
+		NodeSLL<T> slowPointer = head,fastPointer = head;
 		
-		while(slowPointer != null && fastPointer != null && fastPointer.getNext() != null && slowPointer != fastPointer) {
+		while(fastPointer != null && fastPointer.getNext() != null) {
 			slowPointer = slowPointer.getNext();
 			fastPointer = fastPointer.getNext().getNext();
+			
+			if((hasCycle = slowPointer == fastPointer))
+				break;
 		}
-		
-		hasCycle = slowPointer == fastPointer;
 		
 		return hasCycle;
 	} 

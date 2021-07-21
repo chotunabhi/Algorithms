@@ -2,7 +2,7 @@ package com.dsnalgomadeeasy.linkedList.problems;
 
 import com.dsnalgomadeeasy.linkedList.common.NodeSLL;
 
-public class Stack<T> {
+public class Stack<T extends Comparable<T>>  {
 	NodeSLL<T> node;
 	private static int size = 0;
 

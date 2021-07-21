@@ -31,7 +31,7 @@ public class NthNodeFromEndOfSLL {
 		System.out.println(new NthNodeFromEndOfSLL().usingRecursion(node, 5));
 	}
 
-	private <T> T bruteForce(NodeSLL<T> sll,int n){
+	private <T extends Comparable<T>> T bruteForce(NodeSLL<T> sll,int n){
 		T data = null;
 
 		if(sll == null) {
@@ -66,7 +66,7 @@ public class NthNodeFromEndOfSLL {
 		return data;
 	}
 
-	private <T> T usingStack(NodeSLL<T> sll,int n) {
+	private <T extends Comparable<T>>  T usingStack(NodeSLL<T> sll,int n) {
 		T data = null;
 
 		if(sll == null) {
@@ -91,7 +91,7 @@ public class NthNodeFromEndOfSLL {
 		return data;
 	}
 	
-	private<T> T usingHT(NodeSLL<T> sll,int n) {
+	private<T extends Comparable<T>>  T usingHT(NodeSLL<T> sll,int n) {
 		T data = null;
 		Hashtable<Integer, T> listTable = new Hashtable<>();
 		
@@ -117,7 +117,7 @@ public class NthNodeFromEndOfSLL {
 		return data;
 	}
 	
-	private<T> T usingLengthOfSLL(NodeSLL<T> sll,int n) {
+	private<T extends Comparable<T>>  T usingLengthOfSLL(NodeSLL<T> sll,int n) {
 		T data = null;
 		
 		if(sll == null) {
@@ -149,7 +149,7 @@ public class NthNodeFromEndOfSLL {
 		return data;
 	}
 	
-	private<T> T usingOnePass(NodeSLL<T> sll,int n) {
+	private<T extends Comparable<T>>  T usingOnePass(NodeSLL<T> sll,int n) {
 		T data = null;
 		
 		if(sll == null) {
@@ -174,7 +174,7 @@ public class NthNodeFromEndOfSLL {
 		return data;
 	}
 
-	private<T> T usingRecursion(NodeSLL<T> sll,int n) {
+	private<T extends Comparable<T>>  T usingRecursion(NodeSLL<T> sll,int n) {
 		T data = null;
 		
 		if(sll != null) {
