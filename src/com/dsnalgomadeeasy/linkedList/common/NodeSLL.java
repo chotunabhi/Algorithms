@@ -1,6 +1,6 @@
 package com.dsnalgomadeeasy.linkedList.common;
 
-public class NodeSLL<T extends Comparable<T>> {
+public class NodeSLL<T extends Comparable<T>>{
 	private NodeSLL<T> next;
 	private T data;
 	
@@ -20,4 +20,5 @@ public class NodeSLL<T extends Comparable<T>> {
 	public void setData(T data) {
 		this.data = data;
 	}
+	
 }
