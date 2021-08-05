@@ -62,6 +62,8 @@ public class PalindromeListTest {
 	}
 	
 	private <T extends Comparable<T>> void testImplementation(NodeSLL<T> head,boolean expectedResult) {
-		assertEquals(expectedResult, pl.isListPalindromeSplittingList(head));
+//		assertEquals(expectedResult, pl.isListPalindromeSplittingList(head));
+//		assertEquals(expectedResult, pl.isListPalindromeReversingList(head));
+		assertEquals(expectedResult, pl.isListPalindromeUsingStack(head));
 	}
 }
