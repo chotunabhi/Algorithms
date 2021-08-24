@@ -38,4 +38,37 @@ public class ReOrderFirstAndLastLinksOfSLL {
 		
 		return head;
 	}
+	
+	public <T extends Comparable<T>> NodeSLL<T> reOrderListUsingReverseSLL(NodeSLL<T> head){
+		if(head == null)
+			return head;
+		
+		NodeSLL<T> slowPointer = head,fastPointer = head,middleHead = head;
+		
+		while(fastPointer != null && fastPointer.getNext() != null) {
+			slowPointer = slowPointer.getNext();
+			fastPointer = fastPointer.getNext().getNext();
+		}
+		
+		middleHead = slowPointer.getNext();
+		slowPointer.setNext(null);
+		slowPointer = middleHead;
+		
+		middleHead = new ReverseSLL().reverseSLLIterative(middleHead);
+		
+		slowPointer = head;
+		
+		while(middleHead != null && slowPointer != null) {
+			NodeSLL<T> next = slowPointer.getNext();
+			
+			slowPointer.setNext(middleHead);
+			middleHead = middleHead.getNext();
+			
+			slowPointer.getNext().setNext(next);
+			
+			slowPointer = next;
+		}
+		
+		return head;
+	}
 }

@@ -43,9 +43,13 @@ public class ReOrderFirstAndLastLinksOfSLLTest {
 			);
 	}
 	
-	@Test
+//	@Test
 	public void testReOrderListUsingStack() {
 		assertArrayEquals(expectedResult, SLLUtil.getArrayFromList(reOrderFirstAndLastLinksOfSLL.reOrderListUsingStack(head)));
 	}
 
+	@Test
+	public void testReOrderListUsingReverseSLL() {
+		assertArrayEquals(expectedResult, SLLUtil.getArrayFromList(reOrderFirstAndLastLinksOfSLL.reOrderListUsingReverseSLL(head)));
+	}
 }
