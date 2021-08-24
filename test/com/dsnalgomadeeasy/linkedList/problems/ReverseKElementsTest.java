@@ -57,12 +57,13 @@ public class ReverseKElementsTest {
 			);
 	}
 
-	@Test
+//	@Test
 	public void testReverseKLinksTest() {
-		SLLUtil.printList(head);
-		NodeSLL<Integer> reverseKLinkedListHead = rke.reverseKLinks(head, k);
-		SLLUtil.printList(reverseKLinkedListHead);
-		assertArrayEquals(expected, SLLUtil.getArrayFromList(reverseKLinkedListHead));
+		assertArrayEquals(expected, SLLUtil.getArrayFromList(rke.reverseKLinks(head, k)));
 	}
 
+	@Test
+	public void testReverseKLinksRecursiveTest() {
+		assertArrayEquals(expected, SLLUtil.getArrayFromList(rke.reverseKLinksRecursive(head, k)));
+	}
 }

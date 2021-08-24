@@ -34,4 +34,24 @@ public class ReverseKElements {
 		
 		return newHead;
 	}
+	
+	public <T extends Comparable<T>> NodeSLL<T> reverseKLinksRecursive(NodeSLL<T> head,int k){
+		NodeSLL<T> current = head,previous = k > 0 ? null : head;
+		
+		if(head != null && k > 0) {
+			int i = 0;
+			
+			while(i++ != k && current != null) {
+				NodeSLL<T> next = current.getNext();
+				
+				current.setNext(previous);
+				previous = current;
+				current = next;
+			}
+			
+			head.setNext(reverseKLinksRecursive(current, k));
+		}
+		
+		return previous;
+	}
 }
