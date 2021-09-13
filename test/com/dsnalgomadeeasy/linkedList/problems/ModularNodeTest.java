@@ -32,7 +32,7 @@ public class ModularNodeTest {
 		this.expectedResult = expectedResult;
 	}
 
-	@Parameterized.Parameters
+	@Parameterized.Parameters(name=" list {0} k {1} ")
 	public static Collection testData() {
 		/*return Arrays.asList(new Object[][] { { null, 10, null }, { SLLUtil.createSLL(new Integer[] { 1 }), 10, null },
 				{ SLLUtil.createSLL(new Integer[] { 1 }), 1, 1 },
