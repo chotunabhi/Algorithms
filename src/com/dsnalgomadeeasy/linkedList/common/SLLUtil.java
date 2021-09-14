@@ -28,7 +28,10 @@ public class SLLUtil {
 
 	public static <T extends Comparable<T>> NodeSLL<T> createSLL(T[] elements){
 		NodeSLL<T> head = null,prev = null;
-
+		
+		if(elements == null)
+			return head;
+		
 		for (T data : elements) {
 			NodeSLL<T> node = new NodeSLL<T>(data);
 
