@@ -10,10 +10,6 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 
-import com.dsnalgomadeeasy.linkedList.common.SLLUtil;
-import com.dsnalgomadeeasy.linkedList.problems.ExchangeAdjacentElements;
-import com.dsnalgomadeeasy.tree.problems.BinaryTreeTraversals;
-
 @RunWith(Parameterized.class)
 public class BinaryTreeBuildTreeTest {
 	private String[] data;
