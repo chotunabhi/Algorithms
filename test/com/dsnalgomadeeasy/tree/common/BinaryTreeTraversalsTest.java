@@ -106,9 +106,7 @@ public class BinaryTreeTraversalsTest {
 
 	@Test
 	public void testTreversals() {
-		BinaryTreeNode<Integer> root = BinaryTreeUtil.buildTree(data);
-		// System.out.println(btt.getTreeAsList(root, traversalMethod).toArray());
-		assertArrayEquals(expectedResult, btt.getTreeAsArray(root, traversalMethod));
+		assertArrayEquals(expectedResult, btt.getTreeAsArray(BinaryTreeUtil.buildTree(data), traversalMethod));
 	}
 
 }
