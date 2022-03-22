@@ -3,15 +3,15 @@ package com.dsnalgomadeeasy.graphs.common;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Graph {
+public class Graph<T extends Comparable<T>> {
 	private int vertexCount;
 	private boolean[][] adjMatrix;
-	private Map<Object, Integer> vertices;
+	private Map<T, Integer> vertices;
 
-	public Graph(int vertexCount, Object[] vertices) {
-		this.vertexCount = vertexCount;
+	public Graph( T[] vertices) {
+		this.vertexCount = vertices.length;
 		this.adjMatrix = new boolean[vertexCount][vertexCount];
-		this.vertices = new HashMap<Object, Integer>();
+		this.vertices = new HashMap<T, Integer>();
 
 		for (int i = 0; i < vertexCount; i++) {
 			this.vertices.put(vertices[i], i);
@@ -19,7 +19,7 @@ public class Graph {
 
 	}
 
-	public void addEdge(Object source, Object destination) {
+	public void addEdge(T source, T destination) {
 		if (!this.vertices.containsKey(source) || !this.vertices.containsKey(destination))
 			return;
 
@@ -30,9 +30,27 @@ public class Graph {
 		this.adjMatrix[destinationIndex][sourceIndex] = true;
 	}
 
-	public boolean hasEdge(Object source, Object destination) {
+	public boolean hasEdge(T source, T destination) {
 		return this.vertices.containsKey(source) 
 				&& this.vertices.containsKey(destination)
 				&& this.adjMatrix[this.vertices.get(source)][this.vertices.get(destination)];
+	}
+
+	public void buildGraph(T[][] edges) {
+		for(T[] edge:edges) {
+			addEdge(edge[0], edge[1]);
+		}
+	}
+	
+	public int getVertexCount() {
+		return vertexCount;
+	}
+
+	public boolean[][] getAdjMatrix() {
+		return adjMatrix;
+	}
+
+	public Map<T, Integer> getVertices() {
+		return vertices;
 	}
 }
