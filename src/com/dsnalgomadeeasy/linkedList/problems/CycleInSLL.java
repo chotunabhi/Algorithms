@@ -11,12 +11,15 @@ public class CycleInSLL {
 		NodeSLL<T> node = head;
 		HashSet<NodeSLL<T>> hs = new HashSet<>();
 		
-		while(!hs.contains(node) && node != null) {
+		while(node != null) {
+			if(hs.contains(node)) {
+				hasCycle = true;
+				break;
+			}
+			
 			hs.add(node);
 			node = node.getNext();
 		}
-		
-		hasCycle = hs.contains(node);
 		
 		return hasCycle;
 	}
@@ -30,8 +33,10 @@ public class CycleInSLL {
 			slowPointer = slowPointer.getNext();
 			fastPointer = fastPointer.getNext().getNext();
 			
-			if((hasCycle = slowPointer == fastPointer))
+			if(slowPointer == fastPointer) {
+				hasCycle = true;
 				break;
+			}
 		}
 		
 		return hasCycle;

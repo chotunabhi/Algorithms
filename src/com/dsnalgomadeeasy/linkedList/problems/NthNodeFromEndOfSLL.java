@@ -7,7 +7,7 @@ import com.dsnalgomadeeasy.linkedList.common.NodeSLL;
 
 public class NthNodeFromEndOfSLL {
 	private static int position = 0;
-	
+
 	public NthNodeFromEndOfSLL() {
 		position = 0;
 	}
@@ -40,11 +40,10 @@ public class NthNodeFromEndOfSLL {
 		T data = null;
 
 		if(sll != null && n > 0) {
-			NodeSLL<T> current=sll,next = null;
+			NodeSLL<T> current = sll;
+			NodeSLL<T> next = null;
 
 			while(n-- > 0) {
-				current = sll;
-
 				if(current == next)
 					break;
 
@@ -52,6 +51,7 @@ public class NthNodeFromEndOfSLL {
 					current = current.getNext();
 
 				next = current;
+				current = sll;
 			}
 
 			if(n == -1)
@@ -64,37 +64,40 @@ public class NthNodeFromEndOfSLL {
 	public <T extends Comparable<T>> T usingStack(NodeSLL<T> sll, int n) {
 		T data = null;
 
-		if(n > 0 && sll != null) {
-			Stack<T> stack = new Stack<>();
+		if(sll != null && n > 0) {
 			NodeSLL<T> current = sll;
+			Stack<T> nodeStack = new Stack<>();
 
 			while(current != null) {
-				stack.push(current.getData());
+				nodeStack.push(current.getData());
 				current = current.getNext();
 			}
 
-			while(--n > 0 && !stack.isEmpty())
-				stack.pop();
+			while(n-- > 0 && !nodeStack.isEmpty()) {
+				data = nodeStack.pop();
+			}
 
-			if(!stack.isEmpty())
-				data = stack.peek();
+			if(n != -1)
+				data = null;
 		}
 		return data;
 	}
 
 	public <T extends Comparable<T>> T usingHT(NodeSLL<T> sll, int n) {
 		T data = null;
-		Hashtable<Integer, T> listTable = new Hashtable<>();
 
-		NodeSLL<T> current = sll;
-		int i = 1;
+		if(sll != null && n > 0) {
+			Hashtable<Integer, T> listTable = new Hashtable<>();
+			NodeSLL<T> current = sll;
+			int i = 1;
 
-		while(current != null) {
-			listTable.put(i++, current.getData());
-			current = current.getNext();
+			while(current != null) {
+				listTable.put(i++, current.getData());
+				current = current.getNext();
+			}
+
+			data = listTable.getOrDefault(listTable.size() - n + 1, null);
 		}
-
-		data = listTable.get(i - n);
 
 		return data;
 	}
@@ -102,22 +105,26 @@ public class NthNodeFromEndOfSLL {
 	public <T extends Comparable<T>> T usingLengthOfSLL(NodeSLL<T> sll, int n) {
 		T data = null;
 
-		int length = 0;
-		NodeSLL<T> current = sll;
+		if(sll != null && n > 0) {
+			int length = 0;
+			NodeSLL<T> current = sll;
 
-		while(current != null) {
-			current = current.getNext();
-			length++;
+			while(current != null) {
+				current = current.getNext();
+				length++;
+			}
+
+			if(length >= n) {
+				current = sll;
+
+				for(int i = 0; i < (length - n) && current != null; i++) {
+					current = current.getNext();
+				}
+
+				if(current != null && length >= n)
+					data = current.getData();
+			}
 		}
-
-		if(n > 0 && n <= length)
-			current = sll;
-
-		for(int i = 1; i < (length - n + 1) && current != null;i++)
-			current = current.getNext();
-
-		if(current != null)
-			data = current.getData();
 
 		return data;
 	}
@@ -125,23 +132,20 @@ public class NthNodeFromEndOfSLL {
 	public <T extends Comparable<T>> T usingOnePass(NodeSLL<T> sll, int n) {
 		T data = null;
 
-		if(n > 0) {
-			NodeSLL<T> node = sll,current = null;
-
-			while(--n > 0)
-				if(node != null)
-					node = node.getNext();
+		if(sll != null && n > 0) {
+			NodeSLL<T> next = sll;
+			NodeSLL<T> prev = sll;
 			
-			while(node != null) {
-				if(current == null)
-					current = sll;
-				else
-					current = current.getNext();
-
-				node = node.getNext();
+			while(--n > 0 && next != null)
+				next = next.getNext();
+			
+			while(next!= null && next.getNext() != null) {
+				prev = prev.getNext();
+				next = next.getNext();
 			}
-			if(current != null)
-				data = current.getData();
+			
+			if(next != null)
+				data = prev.getData();
 		}
 
 		return data;
@@ -154,9 +158,8 @@ public class NthNodeFromEndOfSLL {
 			data = usingRecursion(sll.getNext(), n);
 			
 			if(++position == n)
-				data = sll.getData();
+				return sll.getData();
 		}
-
 		return data;
 	}
 }

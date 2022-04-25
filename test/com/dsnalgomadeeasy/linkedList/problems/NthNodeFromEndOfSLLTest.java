@@ -67,10 +67,12 @@ public class NthNodeFromEndOfSLLTest {
 	public void testUsingLengthOfSLL() {
 		assertEquals(expectedResult,nnfeos.usingLengthOfSLL(head, n));
 	}
+	
 	@Test
 	public void testUsingOnePass() {
 		assertEquals(expectedResult,nnfeos.usingOnePass(head, n));
 	}
+	
 	@Test
 	public void testUsingRecursion() {
 		assertEquals(expectedResult,nnfeos.usingRecursion(head, n));
