@@ -1,44 +1,44 @@
 package com.dsnalgomadeeasy.stack.problems;
 
-import static org.hamcrest.CoreMatchers.startsWith;
-
 import com.dsnalgomadeeasy.stack.common.StackLL;
 
 public class BalancingSymbols {
 	public boolean isBalancedSymbols(String symbols) {
 		StackLL<Character> symbolStack = new StackLL<>();
-		
-		if(symbols != null)
-			for (int i = 0; i < symbols.length(); i++) {
-				char c = symbols.charAt(i);
 
-				if (isValidSymbol(c)) {
-					if (symbolStack.isEmpty() || symbolStack.peek() != getBalancingSymbol(c))
-						symbolStack.push(c);
-					else
+		if(symbols != null) {
+			for(int i = 0; i < symbols.length(); i++) {
+				char symbol = symbols.charAt(i);
+
+				if(isValidSymbol(symbol)) {
+					if(!symbolStack.isEmpty() && symbolStack.peek().equals(getBalancingSymbol(symbol)))
 						symbolStack.pop();
+					else
+						symbolStack.push(symbol);
 				}
 			}
+		}
 
 		return symbolStack.isEmpty();
 	}
 
-	private boolean isValidSymbol(char c) {
-		return "(){}[]".contains(c + "");
+	private boolean isValidSymbol(char symbol) {
+		// TODO Auto-generated method stub
+		return "()[]{}".contains(symbol+"");
 	}
 
-	private char getBalancingSymbol(Character c) {
-		char balancingSymbol = c;
+	private char getBalancingSymbol(char symbol) {
+		char balancingSymbol=symbol;
 
-		switch (c) {
-		case ')':
-			balancingSymbol = '(';
-			break;
+		switch(symbol) {
 		case '}':
 			balancingSymbol = '{';
 			break;
 		case ']':
 			balancingSymbol = '[';
+			break;
+		case ')':
+			balancingSymbol = '(';
 			break;
 		}
 
