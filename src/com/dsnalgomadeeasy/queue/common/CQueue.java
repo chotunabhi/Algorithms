@@ -2,7 +2,7 @@ package com.dsnalgomadeeasy.queue.common;
 
 import java.lang.reflect.Array;
 
-public class CQueue<T> {
+public class CQueue<T> implements Cloneable{
 	private T[] queueData;
 	private int front, rear, size;
 	public static int CAPACITY = 16;
@@ -19,6 +19,10 @@ public class CQueue<T> {
 		this.clazz = clazz;
 		queueData = (T[]) Array.newInstance(getClass(), capacity);
 		front = rear = size = 0;
+	}
+
+	public Class<T> getClazz() {
+		return clazz;
 	}
 
 	public void enQueue(T data) {
@@ -89,18 +93,25 @@ public class CQueue<T> {
 		StringBuffer sb = new StringBuffer();
 		sb.append("[");
 
-		for (int i = 0; i < queueData.length; i++) {
+		for (int i = front; i < queueData.length || (i%CAPACITY) <= rear; i++) {
 			sb.append(queueData[(front + i) % CAPACITY]);
 
-			if (i < queueData.length - 1)
+			if (i < queueData.length - 1 && i != rear)
 				sb.append(",");
+			
+			if(i == rear)
+				break;
 		}
 
 		sb.append("]");
 
 		return sb.toString();
 	}
-
+	
+	public boolean isEmpty() {
+		return size == 0;
+	}
+	
 	public static void main(String[] args) {
 		CQueue<Integer> queue = new CQueue<>(Integer.class);
 
