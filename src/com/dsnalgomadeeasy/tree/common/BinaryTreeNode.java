@@ -1,7 +1,5 @@
 package com.dsnalgomadeeasy.tree.common;
 
-import com.tree.BinaryNode;
-
 public class BinaryTreeNode<T extends Comparable<T>> implements Cloneable{
 	private BinaryTreeNode<T> left;
 	private BinaryTreeNode<T> right;
