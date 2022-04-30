@@ -47,7 +47,34 @@ public class BinaryHeap {
 		if (count == 0)
 			return -1;
 
-		return array[0];
+		int max = array[0];
+
+		if (this.heapType == HeapType.MINIMUM) {
+			System.err.println("BinaryHeap.getMaximum() => This is MINIMUM heap, getting max will lead to O(N)");
+
+			for (Integer e : array) {
+				if (e > max)
+					max = e;
+			}
+		}
+		return max;
+	}
+
+	public int getMinimum() {
+		if (count == 0)
+			return -1;
+
+		int min = array[0];
+
+		if (this.heapType == HeapType.MAXIMUM) {
+			System.err.println("BinaryHeap.getMaximum() => This is MAXIMUM heap, getting min will lead to O(N)");
+
+			for (Integer e : array) {
+				if (e < min)
+					min = e;
+			}
+		}
+		return min;
 	}
 
 	public void heapify(int i) {
@@ -58,50 +85,48 @@ public class BinaryHeap {
 	}
 
 	private void heapifyMin(int i) {
-		int leftIndex, rightIndex, minIndex=-1;
+		int leftIndex = -1, rightIndex = -1, minIndex = -1;
 
 		leftIndex = getLeft(i);
 		rightIndex = getRight(i);
 
-		if(leftIndex != -1)
-			if (i != -1 && array[leftIndex] < array[i])
-				minIndex = leftIndex;
-			else
-				minIndex = i;
+		if (leftIndex != -1 && this.array[leftIndex] < this.array[i])
+			minIndex = leftIndex;
+		else
+			minIndex = i;
 
-		if(rightIndex != -1)
-			if (getRight(i) != -1 && array[rightIndex] < array[minIndex])
-				minIndex = rightIndex;
+		if (rightIndex != -1 && this.array[rightIndex] < this.array[minIndex])
+			minIndex = rightIndex;
 
-		if (minIndex != -1 && minIndex != i) {
-			int temp = array[i];
-			array[i] = array[minIndex];
-			array[minIndex] = temp;
-
+		if (minIndex != i) {
+			int temp = this.array[minIndex];
+			this.array[minIndex] = this.array[i];
+			this.array[i] = temp;
+			
 			heapifyMin(minIndex);
 		}
+
+		
 	}
 
 	private void heapifyMax(int i) {
-		int leftIndex, rightIndex, maxIndex=-1;
+		int leftIndex = -1, rightIndex = -1, maxIndex = -1;
 
 		leftIndex = getLeft(i);
 		rightIndex = getRight(i);
-		
-		if(leftIndex != -1)
-			if (i != -1 && array[leftIndex] > array[i])
-				maxIndex = leftIndex;
-			else
-				maxIndex = i;
 
-		if(rightIndex != -1)
-			if (rightIndex != -1 && array[rightIndex] > array[maxIndex])
-				maxIndex = rightIndex;
+		if (leftIndex != -1 && this.array[leftIndex] > this.array[i])
+			maxIndex = leftIndex;
+		else
+			maxIndex = i;
 
-		if (maxIndex != -1 && maxIndex != i) {
-			int temp = array[i];
-			array[i] = array[maxIndex];
-			array[maxIndex] = temp;
+		if (rightIndex != -1 && this.array[rightIndex] > this.array[maxIndex])
+			maxIndex = rightIndex;
+
+		if (maxIndex != i) {
+			int temp = this.array[maxIndex];
+			this.array[maxIndex] = this.array[i];
+			this.array[i] = temp;
 			
 			heapifyMax(maxIndex);
 		}
@@ -113,59 +138,61 @@ public class BinaryHeap {
 
 		int element = array[0];
 		array[0] = array[count - 1];
-		count--;
-
+		this.count--;
+		
 		heapify(0);
-
+		
 		return element;
 	}
 
 	public void insert(int data) {
-		if (count == capacity)
+		if (this.count == this.capacity)
 			resizeHeap();
 
-		int current = count;
-		count++;
+		this.count++;
 
-		while (current >= 0 && data > array[(current - 1) / 2]) {
-			array[current] = array[(current - 1) / 2];
-			current = (current - 1) / 2;
+		int i = this.count - 1;
+
+		while (i >= 0 && data >= array[(i - 1) / 2]) {
+			this.array[i] = this.array[(i - 1) / 2];
+			i = (i - 1) / 2;
 		}
 
-		array[current] = data;
+		this.array[i] = data;
 	}
 
 	private void resizeHeap() {
-		int oldArray[] = new int[this.capacity];
-		System.arraycopy(array, 0, oldArray, 0, capacity);
+		int[] old_data = new int[this.array.length];
 
-		array = new Integer[capacity * 2];
+		System.arraycopy(this.array, 0, old_data, 0, this.count - 1);
+		this.array = new Integer[this.capacity * 2];
 
-		System.arraycopy(oldArray, 0, array, 0, capacity);
-
-		capacity *= 2;
+		System.arraycopy(old_data, 0, array, 0, count - 1);
 	}
-	
+
 	public void destroyHeap() {
 		this.count = 0;
 		this.array = null;
 	}
-	
-	public Integer[] buildHeap(BinaryHeap h,Integer[] data) {
-		if(h == null || data == null)
+
+	public Integer[] buildHeap(BinaryHeap h, Integer[] data) {
+		if (h == null || data == null)
 			return null;
-		
-		if(data.length == 0)
+
+		if (data.length == 0)
 			return new Integer[] {};
-		
-		for(int i = 0; i < data.length ; i++)
-			h.array[i] = data[i];
-		
+
+		while (data.length > this.capacity)
+			resizeHeap();
+
+		for (int i = 0; i < data.length; i++)
+			this.array[i] = data[i];
+
 		this.count = data.length;
-		
-		for(int i = (data.length-1)/2; i>=0 ; i--)
+
+		for (int i = (data.length - 1) / 2; i >= 0; i--)
 			h.heapify(i);
-		
+
 		return h.array;
 	}
 
