@@ -1,4 +1,4 @@
-package com.miscellaneous.oracle;
+package com.org.oracle;
 
 import java.util.HashMap;
 import java.util.LinkedList;
