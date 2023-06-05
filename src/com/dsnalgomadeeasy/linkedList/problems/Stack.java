@@ -42,35 +42,38 @@ public class Stack<T extends Comparable<T>>  {
 	}
 
 	public void push(T data) {
-		NodeSLL<T> newNode = new NodeSLL<T>(data);
-
-		newNode.setNext(this.node);
-		this.node = newNode;
-
+		NodeSLL<T> currentNode = new NodeSLL(data);
+		
+		currentNode.setNext(node);
+		node = currentNode;
+		
 		size++;
 	}
 
 	public T pop() {
 		T data = null;
-
-		if (isEmpty()) {
-			System.err.println("Stack is empty");
-		} else {
-			data = node.getData();
+		
+		if(isEmpty()) {
+			System.err.print("Stack Empty");
+		}else {
+			NodeSLL<T> currentNode = node;
 			node = node.getNext();
+			
+			data = currentNode.getData();
+			currentNode.setNext(null);
 			
 			size--;
 		}
-
+		
 		return data;
 	}
 
 	public T peek() {
 		T data = null;
 
-		if (isEmpty()) {
-			System.err.println("Stack is empty");
-		} else {
+		if(isEmpty()) {
+			System.err.print("Stack Empty");
+		}else {
 			data = node.getData();
 		}
 

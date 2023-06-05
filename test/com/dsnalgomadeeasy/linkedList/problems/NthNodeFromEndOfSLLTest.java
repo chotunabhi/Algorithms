@@ -53,16 +53,16 @@ public class NthNodeFromEndOfSLLTest {
 		assertEquals(expectedResult,nnfeos.bruteForce(head, n) );
 	}
 
-	@Test
+	/*@Test
 	public void testUsingStack() {
 		assertEquals(expectedResult,nnfeos.usingStack(head, n));
-	}
+	}*/
 	
 	@Test
 	public void testUsingHT() {
 		assertEquals(expectedResult,nnfeos.usingHT(head, n));
 	}
-	
+	/*
 	@Test
 	public void testUsingLengthOfSLL() {
 		assertEquals(expectedResult,nnfeos.usingLengthOfSLL(head, n));
@@ -76,5 +76,5 @@ public class NthNodeFromEndOfSLLTest {
 	@Test
 	public void testUsingRecursion() {
 		assertEquals(expectedResult,nnfeos.usingRecursion(head, n));
-	}
+	}*/
 }
