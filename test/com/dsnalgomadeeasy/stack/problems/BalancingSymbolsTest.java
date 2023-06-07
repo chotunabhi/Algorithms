@@ -36,7 +36,8 @@ public class BalancingSymbolsTest {
 			{"(A+B)-(C+D)", true},
 			{"(A*B-D", false},
 			{"{(}()[])}", false},
-			{"{[()]}", true}
+			{"{[()]}", true},
+			{"}{][)(",false}
 		});
 	}
 

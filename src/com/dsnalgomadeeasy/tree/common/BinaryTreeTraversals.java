@@ -58,123 +58,76 @@ public class BinaryTreeTraversals {
 	}
 
 	private void postOrderIterative(BinaryTreeNode<Integer> root) {
-		if(root != null) {
-			BinaryTreeNode<Integer> current,previous = null;
-			Stack<BinaryTreeNode<Integer>> nodeStack = new Stack<BinaryTreeNode<Integer>>();
-			nodeStack.push(root);
-			
-			while(!nodeStack.isEmpty()) {
-				current = nodeStack.peek();
-				
-				if(previous == null || previous.getLeft() == current || previous.getRight() == current) {
-					if(current.getLeft() != null) {
-						nodeStack.push(current.getLeft());
-					}else if(current.getRight() != null) {
-						nodeStack.push(current.getRight());
-					}
-				}else if(current.getLeft() == previous) {
-					if(current.getRight() != null) {
-						nodeStack.push(current.getRight());
-					}
-				}else {
-					resultList.add(nodeStack.pop().getData());
-				}
-				
-				previous = current;
-			}
-		}
+		
 	}
 
 	private void inOrderIterative(BinaryTreeNode<Integer> root) {
-		if(root == null)
-			return;
-
-		boolean done = false;
-
-		Stack<BinaryTreeNode<Integer>> nodeStack = new Stack<>();
-		BinaryTreeNode<Integer> currentNode = root;
-
-		while(!done) {
-			if(currentNode != null) {
-				nodeStack.push(currentNode);
-				currentNode = currentNode.getLeft();
-			}else {
-				if(nodeStack.isEmpty())
-					done = true;
-				else {
-					currentNode = nodeStack.pop();
-					resultList.add(currentNode.getData());
-
-					currentNode = currentNode.getRight();
-				}
-			}
+		if(root != null) {
+			Stack<BinaryTreeNode<Integer>> stack = new Stack<>();
+			
+			
 		}
 	}
 
 	private void preOrderIterative(BinaryTreeNode<Integer> root) {
-		resultList.clear();
-
 		if(root != null) {
-			Stack<BinaryTreeNode<Integer>> preOrderStack = new Stack<>();
-			preOrderStack.push(root);
-
-			while(!preOrderStack.isEmpty()) {
-				BinaryTreeNode<Integer> node = preOrderStack.pop();
-
-				resultList.add(node.getData());
-
+			Stack<BinaryTreeNode<Integer>> stack = new Stack<>();
+			stack.push(root);
+			
+			while(!stack.isEmpty()) {
+				BinaryTreeNode<Integer> node = stack.pop();
+				
+				resultList.add(node.data);
+				
 				if(node.getRight() != null)
-					preOrderStack.push(node.getRight());
-
+					stack.push(node.getRight());
+				
 				if(node.getLeft() != null)
-					preOrderStack.push(node.getLeft());
+					stack.push(node.getLeft());
 			}
 		}
-
 	}
 
 	public void preOrder(BinaryTreeNode<Integer> root) {
-		if (root != null) {
-			resultList.add(root.getData());
+		if(root != null) {
+			resultList.add(root.data);
 			preOrder(root.getLeft());
 			preOrder(root.getRight());
 		}
 	}
 
 	public void inOrder(BinaryTreeNode<Integer> root) {
-		if (root != null) {
+		if(root != null) {
 			inOrder(root.getLeft());
-			resultList.add(root.getData());
+			resultList.add(root.data);
 			inOrder(root.getRight());
 		}
 	}
 
 	public void postOrder(BinaryTreeNode<Integer> root) {
-		if (root != null) {
+		if(root != null) {
 			postOrder(root.getLeft());
 			postOrder(root.getRight());
-			resultList.add(root.getData());
+			resultList.add(root.data);
 		}
 	}
 
 	public void levelOrderTraversal(BinaryTreeNode<Integer> root) {
-		resultList.clear();
-
-		if (root == null)
+		if(root == null)
 			return;
-
-		Queue<BinaryTreeNode<Integer>> nodesQueue = new LinkedList<>();
-		nodesQueue.offer(root);
-
-		while (!nodesQueue.isEmpty()) {
-			BinaryTreeNode<Integer> node = nodesQueue.poll();
-			resultList.add(node.getData());
-
-			if (node.getLeft() != null)
-				nodesQueue.offer(node.getLeft());
-
-			if (node.getRight() != null)
-				nodesQueue.offer(node.getRight());
+		
+		Queue<BinaryTreeNode<Integer>> queue = new LinkedList<>();
+		queue.offer(root);
+		
+		while(!queue.isEmpty()) {
+			BinaryTreeNode<Integer> node = queue.poll();
+			
+			if(node.getLeft() != null)
+				queue.offer(node.getLeft());
+			if(node.getRight() != null)
+				queue.offer(node.getRight());
+			
+			resultList.add(node.data);
 		}
 	}
 

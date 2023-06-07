@@ -2,7 +2,7 @@ package com.dsnalgomadeeasy.queue.common;
 
 import java.lang.reflect.Array;
 
-public class CQueue<T> implements Cloneable{
+public class CQueue<T extends Comparable<T>> implements Cloneable{
 	private T[] queueData;
 	private int front, rear, size;
 	public static int CAPACITY = 16;

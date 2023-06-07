@@ -3,56 +3,52 @@ package com.dsnalgomadeeasy.stack.problems;
 import com.dsnalgomadeeasy.stack.common.StackLL;
 
 public class InfixToPostFix {
-	
+
 	public String getPostFix(String infix) {
-		if(infix == null)
-			return infix;
-		
+		if (infix == null)
+			return null;
+
 		StringBuffer postFix = new StringBuffer();
-		StringBuffer infixBuffer = new StringBuffer(infix.length()+2);
-		StackLL<Character> dataStack = new StackLL<>();
-		
-		infixBuffer.append(infix)
-		.append(")");
-		
-		dataStack.push('(');
-		
-		for(int i = 0; i < infixBuffer.length(); i++) {
-			char symbol = infixBuffer.charAt(i);
-			
-			if(isOperator(symbol)) {
-				if(symbol == '(') {
-					dataStack.push(symbol);
-				}else if(symbol == ')') {
-					while(!dataStack.isEmpty() && !dataStack.peek().equals('('))
-						postFix.append(dataStack.pop());
-					if(!dataStack.isEmpty() && dataStack.peek().equals('('))
-						dataStack.pop();
-				}else {
-					while(!dataStack.isEmpty() 
-							&& getOperatorPriority(symbol) <= getOperatorPriority(dataStack.peek())
-							&& dataStack.peek() != '(') {
-						postFix.append(dataStack.pop());
-					}
-					
-					dataStack.push(symbol);
-				}
+		StackLL<Character> operatorStack = new StackLL<>();
+
+		for (int i = 0; i < infix.length(); i++) {
+			char op = infix.charAt(i);
+
+			if (!isOperator(op)) {
+				postFix.append(op);
+			}else if(op == '(')
+				operatorStack.push(op);
+			else if(op == ')') {
+				while (!operatorStack.isEmpty()
+						&& operatorStack.peek() != '(') 
+					postFix.append(operatorStack.pop());
+				
+				if(!operatorStack.isEmpty() && operatorStack.peek() == '(')
+					operatorStack.pop();
 			}else {
-				postFix.append(symbol);
+				while (!operatorStack.isEmpty()
+						&& getOperatorPriority(op) <= getOperatorPriority(operatorStack.peek())
+						&& operatorStack.peek() != '(') 
+					postFix.append(operatorStack.pop());
+				
+				operatorStack.push(op);
 			}
-			
 		}
-		
+
+		while(!operatorStack.isEmpty()) 
+			postFix.append(operatorStack.pop());
+
 		return postFix.toString();
 	}
-	
+
 	private boolean isOperator(char symbol) {
-		return "+-()*%/".contains(symbol+"");
+		return "+-()*%/".contains(symbol + "");
 	}
+
 	private byte getOperatorPriority(char operator) {
 		byte priority = -1;
-		
-		switch(operator) {
+
+		switch (operator) {
 		case '+':
 		case '-':
 			priority = 1;
@@ -66,7 +62,7 @@ public class InfixToPostFix {
 			priority = 3;
 			break;
 		}
-		
+
 		return priority;
 	}
 }

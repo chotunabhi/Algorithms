@@ -3,7 +3,7 @@ package com.dsnalgomadeeasy.linkedList.problems;
 import com.dsnalgomadeeasy.linkedList.common.NodeSLL;
 
 public class Stack<T extends Comparable<T>>  {
-	NodeSLL<T> node;
+	NodeSLL<T> top;
 	private static int size = 0;
 
 	public static void main(String[] args) {
@@ -44,8 +44,8 @@ public class Stack<T extends Comparable<T>>  {
 	public void push(T data) {
 		NodeSLL<T> currentNode = new NodeSLL(data);
 		
-		currentNode.setNext(node);
-		node = currentNode;
+		currentNode.setNext(top);
+		top = currentNode;
 		
 		size++;
 	}
@@ -56,8 +56,8 @@ public class Stack<T extends Comparable<T>>  {
 		if(isEmpty()) {
 			System.err.print("Stack Empty");
 		}else {
-			NodeSLL<T> currentNode = node;
-			node = node.getNext();
+			NodeSLL<T> currentNode = top;
+			top = top.getNext();
 			
 			data = currentNode.getData();
 			currentNode.setNext(null);
@@ -74,14 +74,14 @@ public class Stack<T extends Comparable<T>>  {
 		if(isEmpty()) {
 			System.err.print("Stack Empty");
 		}else {
-			data = node.getData();
+			data = top.getData();
 		}
 
 		return data;
 	}
 
 	public boolean isEmpty() {
-		return node == null;
+		return top == null;
 	}
 
 	public int size() {
@@ -93,7 +93,7 @@ public class Stack<T extends Comparable<T>>  {
 		list.append("[");
 
 		if (!isEmpty()) {
-			NodeSLL<T> node = this.node;
+			NodeSLL<T> node = this.top;
 
 			do {
 				list.append(node.getData());
