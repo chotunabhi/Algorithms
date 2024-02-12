@@ -37,49 +37,49 @@ public class BinaryTreeTraversalsTest {
 				{ null, new Integer[] {}, TraversalMethod.POSTORDER },
 				{ null, new Integer[] {}, TraversalMethod.LEVELORDER },
 				{ null, new Integer[] {}, TraversalMethod.PREORDER_IT },
-/*				{ null, new Integer[] {}, TraversalMethod.INORDER_IT },
+				{ null, new Integer[] {}, TraversalMethod.INORDER_IT },
 				// { null, new Integer[] {}, TraversalMethod.POSTORDER_IT },
-*/
+
 				{ new String[] { "1" }, new Integer[] { 1 }, TraversalMethod.PREORDER },
 				{ new String[] { "1" }, new Integer[] { 1 }, TraversalMethod.INORDER },
 				{ new String[] { "1" }, new Integer[] { 1 }, TraversalMethod.POSTORDER },
 				{ new String[] { "1" }, new Integer[] { 1 }, TraversalMethod.LEVELORDER },
 				{ new String[] { "1" }, new Integer[] { 1 }, TraversalMethod.PREORDER_IT },
-/*				{ new String[] { "1" }, new Integer[] { 1 }, TraversalMethod.INORDER_IT },
+				{ new String[] { "1" }, new Integer[] { 1 }, TraversalMethod.INORDER_IT },
 				{ new String[] { "1" }, new Integer[] { 1 }, TraversalMethod.POSTORDER_IT },
-*/
+
 				{ new String[] { "1", "n" }, new Integer[] { 1 }, TraversalMethod.PREORDER },
 				{ new String[] { "1", "n" }, new Integer[] { 1 }, TraversalMethod.INORDER },
 				{ new String[] { "1", "n" }, new Integer[] { 1 }, TraversalMethod.POSTORDER },
 				{ new String[] { "1", "n" }, new Integer[] { 1 }, TraversalMethod.LEVELORDER },
 				{ new String[] { "1", "n" }, new Integer[] { 1 }, TraversalMethod.PREORDER_IT },
-/*				{ new String[] { "1", "n" }, new Integer[] { 1 }, TraversalMethod.INORDER_IT },
+				{ new String[] { "1", "n" }, new Integer[] { 1 }, TraversalMethod.INORDER_IT },
 				{ new String[] { "1", "n" }, new Integer[] { 1 }, TraversalMethod.POSTORDER_IT },
-*/
+
 				{ new String[] { "1", "n", "n" }, new Integer[] { 1 }, TraversalMethod.PREORDER },
 				{ new String[] { "1", "n", "n" }, new Integer[] { 1 }, TraversalMethod.INORDER },
 				{ new String[] { "1", "n", "n" }, new Integer[] { 1 }, TraversalMethod.POSTORDER },
 				{ new String[] { "1", "n", "n" }, new Integer[] { 1 }, TraversalMethod.LEVELORDER },
 				{ new String[] { "1", "n", "n" }, new Integer[] { 1 }, TraversalMethod.PREORDER_IT },
-/*				{ new String[] { "1", "n", "n" }, new Integer[] { 1 }, TraversalMethod.INORDER_IT },
+				{ new String[] { "1", "n", "n" }, new Integer[] { 1 }, TraversalMethod.INORDER_IT },
 				{ new String[] { "1", "n", "n" }, new Integer[] { 1 }, TraversalMethod.POSTORDER_IT },
-*/
+
 				{ new String[] { "1", "2", "n", "3" }, new Integer[] { 1, 2, 3 }, TraversalMethod.PREORDER },
 				{ new String[] { "1", "2", "n", "3" }, new Integer[] { 3, 2, 1 }, TraversalMethod.INORDER },
 				{ new String[] { "1", "2", "n", "3" }, new Integer[] { 3, 2, 1 }, TraversalMethod.POSTORDER },
 				{ new String[] { "1", "2", "n", "3" }, new Integer[] { 1, 2, 3 }, TraversalMethod.LEVELORDER },
 				{ new String[] { "1", "2", "n", "3" }, new Integer[] { 1, 2, 3 }, TraversalMethod.PREORDER_IT },
-/*				{ new String[] { "1", "2", "n", "3" }, new Integer[] { 3, 2, 1 }, TraversalMethod.INORDER_IT },
+				{ new String[] { "1", "2", "n", "3" }, new Integer[] { 3, 2, 1 }, TraversalMethod.INORDER_IT },
 				{ new String[] { "1", "2", "n", "3" }, new Integer[] { 3, 2, 1 }, TraversalMethod.POSTORDER_IT },
-*/
+
 				{ new String[] { "1", "n", "2", "n", "3" }, new Integer[] { 1, 2, 3 }, TraversalMethod.PREORDER },
 				{ new String[] { "1", "n", "2", "n", "3" }, new Integer[] { 1, 2, 3 }, TraversalMethod.INORDER },
 				{ new String[] { "1", "n", "2", "n", "3" }, new Integer[] { 3, 2, 1 }, TraversalMethod.POSTORDER },
 				{ new String[] { "1", "n", "2", "n", "3" }, new Integer[] { 1, 2, 3 }, TraversalMethod.LEVELORDER },
 				{ new String[] { "1", "n", "2", "n", "3" }, new Integer[] { 1, 2, 3 }, TraversalMethod.PREORDER_IT },
-/*				{ new String[] { "1", "n", "2", "n", "3" }, new Integer[] { 1, 2, 3 }, TraversalMethod.INORDER_IT },
+				{ new String[] { "1", "n", "2", "n", "3" }, new Integer[] { 1, 2, 3 }, TraversalMethod.INORDER_IT },
 				{ new String[] { "1", "n", "2", "n", "3" }, new Integer[] { 3, 2, 1 }, TraversalMethod.POSTORDER_IT },
-*/
+
 				{ new String[] { "1", "2", "3", "4", "5" }, new Integer[] { 1, 2, 4, 5, 3 }, TraversalMethod.PREORDER },
 				{ new String[] { "1", "2", "3", "4", "5" }, new Integer[] { 4, 2, 5, 1, 3 }, TraversalMethod.INORDER },
 				{ new String[] { "1", "2", "3", "4", "5" }, new Integer[] { 4, 5, 2, 3, 1 },
@@ -88,11 +88,11 @@ public class BinaryTreeTraversalsTest {
 						TraversalMethod.LEVELORDER },
 				{ new String[] { "1", "2", "3", "4", "5" }, new Integer[] { 1, 2, 4, 5, 3 },
 						TraversalMethod.PREORDER_IT },
-/*				{ new String[] { "1", "2", "3", "4", "5" }, new Integer[] { 4, 2, 5, 1, 3 },
+				{ new String[] { "1", "2", "3", "4", "5" }, new Integer[] { 4, 2, 5, 1, 3 },
 						TraversalMethod.INORDER_IT },
 				{ new String[] { "1", "2", "3", "4", "5" }, new Integer[] { 4, 5, 2, 3, 1 },
 						TraversalMethod.POSTORDER_IT },
-*/
+
 				{ new String[] { "1", "2", "3", "4", "n", "n", "5" }, new Integer[] { 1, 2, 4, 3, 5 },
 						TraversalMethod.PREORDER },
 				{ new String[] { "1", "2", "3", "4", "n", "n", "5" }, new Integer[] { 4, 2, 1, 3, 5 },
@@ -103,11 +103,11 @@ public class BinaryTreeTraversalsTest {
 						TraversalMethod.LEVELORDER },
 				{ new String[] { "1", "2", "3", "4", "n", "n", "5" }, new Integer[] { 1, 2, 4, 3, 5 },
 						TraversalMethod.PREORDER_IT },
-/*				{ new String[] { "1", "2", "3", "4", "n", "n", "5" }, new Integer[] { 4, 2, 1, 3, 5 },
+				{ new String[] { "1", "2", "3", "4", "n", "n", "5" }, new Integer[] { 4, 2, 1, 3, 5 },
 						TraversalMethod.INORDER_IT },
 				{ new String[] { "1", "2", "3", "4", "n", "n", "5" }, new Integer[] { 4, 2, 5, 3, 1 },
 						TraversalMethod.POSTORDER_IT },
-*/
+
 				{ new String[] { "1", "2", "3", "n", "4", "5", "n" }, new Integer[] { 1, 2, 4, 3, 5 },
 						TraversalMethod.PREORDER },
 				{ new String[] { "1", "2", "3", "n", "4", "5", "n" }, new Integer[] { 2, 4, 1, 5, 3 },
@@ -118,11 +118,11 @@ public class BinaryTreeTraversalsTest {
 						TraversalMethod.LEVELORDER },
 				{ new String[] { "1", "2", "3", "n", "4", "5", "n" }, new Integer[] { 1, 2, 4, 3, 5 },
 						TraversalMethod.PREORDER_IT },
-/*				{ new String[] { "1", "2", "3", "n", "4", "5", "n" }, new Integer[] { 2, 4, 1, 5, 3 },
+				{ new String[] { "1", "2", "3", "n", "4", "5", "n" }, new Integer[] { 2, 4, 1, 5, 3 },
 						TraversalMethod.INORDER_IT },
 				{ new String[] { "1", "2", "3", "n", "4", "5", "n" }, new Integer[] { 4, 2, 5, 3, 1 },
 						TraversalMethod.POSTORDER_IT },
-*/
+
 				{ new String[] { "1", "2", "3", "4", "5", "6", "7" }, new Integer[] { 1, 2, 4, 5, 3, 6, 7 },
 						TraversalMethod.PREORDER },
 				{ new String[] { "1", "2", "3", "4", "5", "6", "7" }, new Integer[] { 4, 2, 5, 1, 6, 3, 7 },
@@ -132,12 +132,12 @@ public class BinaryTreeTraversalsTest {
 				{ new String[] { "1", "2", "3", "4", "5", "6", "7" }, new Integer[] { 1, 2, 3, 4, 5, 6, 7 },
 						TraversalMethod.LEVELORDER },
 				{ new String[] { "1", "2", "3", "4", "5", "6", "7" }, new Integer[] { 1, 2, 4, 5, 3, 6, 7 },
-						TraversalMethod.PREORDER }/*,
+						TraversalMethod.PREORDER },
 				{ new String[] { "1", "2", "3", "4", "5", "6", "7" }, new Integer[] { 4, 2, 5, 1, 6, 3, 7 },
 						TraversalMethod.INORDER_IT },
 				{ new String[] { "1", "2", "3", "4", "5", "6", "7" }, new Integer[] { 4, 5, 2, 6, 7, 3, 1 },
 						TraversalMethod.POSTORDER_IT } 
-*/						});
+						});
 
 	}
 

@@ -5,6 +5,8 @@ import java.util.List;
 import java.util.Queue;
 import java.util.Stack;
 
+import com.dsnalgomadeeasy.stack.common.StackLL;
+
 public class BinaryTreeTraversals {
 	public enum TraversalMethod {
 		PREORDER, PREORDER_IT, INORDER, INORDER_IT, POSTORDER, POSTORDER_IT, LEVELORDER
@@ -58,33 +60,35 @@ public class BinaryTreeTraversals {
 	}
 
 	private void postOrderIterative(BinaryTreeNode<Integer> root) {
-		
+		if(root != null) {
+
+		}
 	}
 
 	private void inOrderIterative(BinaryTreeNode<Integer> root) {
 		if(root != null) {
-			Stack<BinaryTreeNode<Integer>> stack = new Stack<>();
-			
-			
+		
 		}
 	}
 
 	private void preOrderIterative(BinaryTreeNode<Integer> root) {
 		if(root != null) {
-			Stack<BinaryTreeNode<Integer>> stack = new Stack<>();
-			stack.push(root);
-			
-			while(!stack.isEmpty()) {
-				BinaryTreeNode<Integer> node = stack.pop();
-				
-				resultList.add(node.data);
-				
-				if(node.getRight() != null)
-					stack.push(node.getRight());
-				
-				if(node.getLeft() != null)
-					stack.push(node.getLeft());
+			resultList.clear();
+
+			Stack<BinaryTreeNode<Integer>> nodeStack = new Stack<>();
+			nodeStack.push(root);
+
+			while(!nodeStack.isEmpty()) {
+				BinaryTreeNode<Integer> currentNode = nodeStack.pop();
+
+				resultList.add(currentNode.getData());
+
+				if(currentNode.getRight() != null)
+					nodeStack.push(currentNode.getRight());
+				if(currentNode.getLeft() != null)
+					nodeStack.push(currentNode.getLeft());
 			}
+
 		}
 	}
 
@@ -115,18 +119,18 @@ public class BinaryTreeTraversals {
 	public void levelOrderTraversal(BinaryTreeNode<Integer> root) {
 		if(root == null)
 			return;
-		
+
 		Queue<BinaryTreeNode<Integer>> queue = new LinkedList<>();
 		queue.offer(root);
-		
+
 		while(!queue.isEmpty()) {
 			BinaryTreeNode<Integer> node = queue.poll();
-			
+
 			if(node.getLeft() != null)
 				queue.offer(node.getLeft());
 			if(node.getRight() != null)
 				queue.offer(node.getRight());
-			
+
 			resultList.add(node.data);
 		}
 	}

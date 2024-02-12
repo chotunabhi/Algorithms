@@ -44,37 +44,65 @@ public class BinaryHeap {
 	}
 
 	public int getMaximum() {
-		if (count == 0)
-			return -1;
-
-		int max = array[0];
-
-		if (this.heapType == HeapType.MINIMUM) {
-			System.err.println("BinaryHeap.getMaximum() => This is MINIMUM heap, getting max will lead to O(N)");
-
-			for (Integer e : array) {
-				if (e > max)
-					max = e;
-			}
-		}
+		int max = -1;
+		
 		return max;
 	}
 
 	public int getMinimum() {
-		if (count == 0)
-			return -1;
-
-		int min = array[0];
-
-		if (this.heapType == HeapType.MAXIMUM) {
-			System.err.println("BinaryHeap.getMaximum() => This is MAXIMUM heap, getting min will lead to O(N)");
-
-			for (Integer e : array) {
-				if (e < min)
-					min = e;
-			}
-		}
+		int min  = -1;
+		
 		return min;
+	}
+
+	private void heapifyMin(int i) {
+		if(this.count == -1)
+			return;
+		
+		int l,r,min,temp;
+		l = this.getLeft(i);
+		r = this.getRight(i);
+		min = i;
+		
+		if(l != -1 && this.array[l] < this.array[i])
+			min = l;
+		
+		if(r != -1 && this.array[r] < this.array[i])
+			min = r;
+		
+		if(min != i) {
+			temp = this.array[i];
+			this.array[i] = this.array[min];
+			this.array[min] = temp; 
+		}
+		
+		heapifyMin(min);
+		
+	}
+
+	private void heapifyMax(int i) {
+		if(this.count == -1)
+			return;
+		
+		int l,r,max,temp;
+		l = this.getLeft(i);
+		r = this.getRight(i);
+		max = i;
+		
+		if(l != -1 && this.array[l] > this.array[i])
+			max = l;
+		
+		if(r != -1 && this.array[r] > this.array[i])
+			max = r;
+		
+		if(max != i) {
+			temp = this.array[i];
+			this.array[i] = this.array[max];
+			this.array[max] = temp; 
+		}
+		
+		heapifyMin(max);
+		
 	}
 
 	public void heapify(int i) {
@@ -82,54 +110,6 @@ public class BinaryHeap {
 			heapifyMax(i);
 		else if (this.heapType == HeapType.MINIMUM)
 			heapifyMin(i);
-	}
-
-	private void heapifyMin(int i) {
-		int leftIndex = -1, rightIndex = -1, minIndex = -1;
-
-		leftIndex = getLeft(i);
-		rightIndex = getRight(i);
-
-		if (leftIndex != -1 && this.array[leftIndex] < this.array[i])
-			minIndex = leftIndex;
-		else
-			minIndex = i;
-
-		if (rightIndex != -1 && this.array[rightIndex] < this.array[minIndex])
-			minIndex = rightIndex;
-
-		if (minIndex != i) {
-			int temp = this.array[minIndex];
-			this.array[minIndex] = this.array[i];
-			this.array[i] = temp;
-			
-			heapifyMin(minIndex);
-		}
-
-		
-	}
-
-	private void heapifyMax(int i) {
-		int leftIndex = -1, rightIndex = -1, maxIndex = -1;
-
-		leftIndex = getLeft(i);
-		rightIndex = getRight(i);
-
-		if (leftIndex != -1 && this.array[leftIndex] > this.array[i])
-			maxIndex = leftIndex;
-		else
-			maxIndex = i;
-
-		if (rightIndex != -1 && this.array[rightIndex] > this.array[maxIndex])
-			maxIndex = rightIndex;
-
-		if (maxIndex != i) {
-			int temp = this.array[maxIndex];
-			this.array[maxIndex] = this.array[i];
-			this.array[i] = temp;
-			
-			heapifyMax(maxIndex);
-		}
 	}
 
 	public int deleteMaxOrMin() {
@@ -146,19 +126,7 @@ public class BinaryHeap {
 	}
 
 	public void insert(int data) {
-		if (this.count == this.capacity)
-			resizeHeap();
-
-		this.count++;
-
-		int i = this.count - 1;
-
-		while (i >= 0 && data >= array[(i - 1) / 2]) {
-			this.array[i] = this.array[(i - 1) / 2];
-			i = (i - 1) / 2;
-		}
-
-		this.array[i] = data;
+		
 	}
 
 	private void resizeHeap() {
@@ -176,22 +144,7 @@ public class BinaryHeap {
 	}
 
 	public Integer[] buildHeap(BinaryHeap h, Integer[] data) {
-		if (h == null || data == null)
-			return null;
-
-		if (data.length == 0)
-			return new Integer[] {};
-
-		while (data.length > this.capacity)
-			resizeHeap();
-
-		for (int i = 0; i < data.length; i++)
-			this.array[i] = data[i];
-
-		this.count = data.length;
-
-		for (int i = (data.length - 1) / 2; i >= 0; i--)
-			h.heapify(i);
+		
 
 		return h.array;
 	}
