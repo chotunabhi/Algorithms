@@ -15,25 +15,27 @@ public class StackUsingQueues<T extends Comparable<T>> {
 	}
 	
 	public void push(T data) {
-		if (queue1.isEmpty())
+		if(queue1.isEmpty())
 			queue2.enQueue(data);
 		else
 			queue1.enQueue(data);
 	}
 
 	public T pop() throws EmptyStackException {
-		if (isEmpty())
-			throw new EmptyStackException();
-		
 		T data = null;
+		
+		if(isEmpty()) 
+			throw new EmptyStackException();
 
-		CQueue<T> popQueue = queue1.isEmpty() ? queue2 : queue1;
-		CQueue<T> pushQueue = queue1.isEmpty() ? queue1 : queue2;
+		CQueue<T> popQueue = queue1.isEmpty()?queue2:queue1;
+		CQueue<T> pushQueue = queue1.isEmpty()?queue1:queue2;
 
-		for (int i = 0; i < popQueue.size(); i++) {
+		int size = popQueue.size();
+		
+		for(int i = 0; i < size - 1; i++) {
 			pushQueue.enQueue(popQueue.deQueue());
 		}
-
+		
 		data = popQueue.deQueue();
 
 		return data;
@@ -49,9 +51,14 @@ public class StackUsingQueues<T extends Comparable<T>> {
 		CQueue<T> displayQueue = queue1.isEmpty() ? queue2 : queue1;
 		
 		if(!displayQueue.isEmpty()) {
-			StringBuilder qb = new StringBuilder(displayQueue.toString());
+			StringBuilder displayQueueString = new StringBuilder(displayQueue.toString());
+			String queueString = displayQueueString.substring(1,displayQueueString.length()-1);
 			
-			sb = new StringBuilder(qb.reverse().substring(1,qb.length()-1));
+			for(String elem:queueString.toString().split(",")) {
+				sb.insert(0, elem+",");
+			}
+			
+			sb.deleteCharAt(sb.length()-1);
 		}
 		
 		return sb.toString();
@@ -68,6 +75,12 @@ public class StackUsingQueues<T extends Comparable<T>> {
 		System.out.println(stack);
 
 		stack.push(3);
+		System.out.println(stack);
+		
+		stack.push(8);
+		System.out.println(stack);
+		
+		stack.push(81);
 		System.out.println(stack);
 		
 		System.out.println(stack.pop());
