@@ -13,28 +13,12 @@ public class MinMaxStack<T extends Comparable<T>> extends Stack<T>{
 	public T push(T e) {
 		super.push(e);
 		
-		if(minStack.isEmpty() || minStack.peek().compareTo(e) >= 0) {
-			minStack.push(e);
-		}
-		
-		if(maxStack.isEmpty() || maxStack.peek().compareTo(e) <= 0) {
-			maxStack.push(e);
-		}
-		
 		return e;
 	}
 	
 	@Override
 	public T pop() {
 		T e = super.pop();
-		
-		if(!minStack.isEmpty() && minStack.peek().compareTo(e) == 0) {
-			minStack.pop();
-		}
-		
-		if(!maxStack.isEmpty() && maxStack.peek().compareTo(e) == 0) {
-			maxStack.pop();
-		}
 		
 		return e;
 	}

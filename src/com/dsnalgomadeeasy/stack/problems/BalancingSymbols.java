@@ -6,25 +6,7 @@ public class BalancingSymbols {
 	public boolean isBalancedSymbols(String symbols) {
 		StackLL<Character> symbolStack = new StackLL();
 
-		if(symbols != null) {
-			for(int i = 0; i < symbols.length(); i++) {
-				char symbol = symbols.charAt(i);
-
-				if(isValidSymbol(symbol)) {
-					if(symbolStack.isEmpty() || symbol == getBalancingSymbol(symbol)) {
-						symbolStack.push(symbol);
-					}else {
-						char topSymbol = symbolStack.peek();
-
-						if(topSymbol == getBalancingSymbol(symbol))
-							symbolStack.pop();
-						else
-							break;
-					}
-				}
-			}
-		}
-
+		
 		return symbolStack.isEmpty();
 
 	}

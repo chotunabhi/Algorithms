@@ -73,22 +73,7 @@ public class BinaryTreeTraversals {
 
 	private void preOrderIterative(BinaryTreeNode<Integer> root) {
 		if(root != null) {
-			resultList.clear();
-
-			Stack<BinaryTreeNode<Integer>> nodeStack = new Stack<>();
-			nodeStack.push(root);
-
-			while(!nodeStack.isEmpty()) {
-				BinaryTreeNode<Integer> currentNode = nodeStack.pop();
-
-				resultList.add(currentNode.getData());
-
-				if(currentNode.getRight() != null)
-					nodeStack.push(currentNode.getRight());
-				if(currentNode.getLeft() != null)
-					nodeStack.push(currentNode.getLeft());
-			}
-
+		
 		}
 	}
 

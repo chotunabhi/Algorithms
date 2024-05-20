@@ -9,36 +9,7 @@ public class InfixToPostFix {
 			return null;
 
 		StringBuffer postFix = new StringBuffer();
-		StackLL<Character> operatorStack = new StackLL<>();
-
-		for (int i = 0; i < infix.length(); i++) {
-			char op = infix.charAt(i);
-
-			if (!isOperator(op)) 
-				postFix.append(op);
-			else if(op == '(') 
-				operatorStack.push(op);
-			else if(op == ')') {
-				while(!operatorStack.isEmpty() && operatorStack.peek() != '(')
-					postFix.append(operatorStack.pop());
-				
-				if(!operatorStack.isEmpty() && operatorStack.peek() == '(')
-					operatorStack.pop();
-			}else {
-				while(!operatorStack.isEmpty()
-						&& getOperatorPriority(op) <= getOperatorPriority(operatorStack.peek())
-						&& operatorStack.peek() != '(') {
-					postFix.append(operatorStack.pop());
-				}
-				
-				operatorStack.push(op);
-			}
-		}
-
-		while (!operatorStack.isEmpty()) {
-			postFix.append(operatorStack.pop());
-		}
-
+		
 		return postFix.toString();
 	}
 

@@ -20,27 +20,6 @@ public class BFS<T extends Comparable<T>> {
 	}
 
 	public ArrayList<T> breadthFirstSearch(T startVertex) {
-		if(graph.getVertices().containsKey(startVertex)) {
-			Queue<T> queue = new LinkedList<T>();
-			queue.offer(startVertex);
-			path.add(startVertex);
-			visited[graph.getVertices().get(startVertex)] = true;
-			
-			while(!queue.isEmpty()) {
-				T currentVertex = queue.poll();
-				
-				for(int i = 0; i < visited.length; i++) {
-					if(graph.hasEdge(currentVertex, vertices[i])
-						&& !currentVertex.equals(vertices[i])
-						&& !visited[i] 
-					){
-						queue.offer(vertices[i]);
-						visited[i] = true;
-						path.add(vertices[i]);
-					}
-				}
-			}
-		}
 
 		return path;
 	}

@@ -37,27 +37,6 @@ public class NthNodeFromEndOfSLL {
 	public <T extends Comparable<T>> T bruteForce(NodeSLL<T> sll, int n) {
 		T data = null;
 
-		if (sll != null && n > 0) {
-
-			NodeSLL<T> lastNode = null;
-
-			while (n-- > 0) {
-				NodeSLL<T> currentNode = sll, prev = null;
-
-				if (lastNode == currentNode)
-					break;
-
-				while (currentNode != lastNode) {
-					prev = currentNode;
-					currentNode = currentNode.getNext();
-				}
-
-				lastNode = prev;
-			}
-
-			if (n == -1)
-				data = lastNode.getData();
-		}
 
 		return data;
 	}
@@ -73,19 +52,6 @@ public class NthNodeFromEndOfSLL {
 	public <T extends Comparable<T>> T usingHT(NodeSLL<T> sll, int n) {
 		T data = null;
 
-		if(sll != null && n > 0) {
-			Hashtable<Integer, T> nodeHT = new Hashtable<Integer, T>();
-			int i = 1;
-			
-			while(sll != null) {
-				nodeHT.put(i++, sll.getData());
-				
-				sll = sll.getNext();
-			}
-			
-			data = nodeHT.get(nodeHT.size() - n + 1);
-		}
-		
 		return data;
 	}
 

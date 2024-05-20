@@ -15,28 +15,11 @@ public class StackUsingQueues<T extends Comparable<T>> {
 	}
 	
 	public void push(T data) {
-		if(queue1.isEmpty())
-			queue2.enQueue(data);
-		else
-			queue1.enQueue(data);
+		
 	}
 
 	public T pop() throws EmptyStackException {
 		T data = null;
-		
-		if(isEmpty()) 
-			throw new EmptyStackException();
-
-		CQueue<T> popQueue = queue1.isEmpty()?queue2:queue1;
-		CQueue<T> pushQueue = queue1.isEmpty()?queue1:queue2;
-
-		int size = popQueue.size();
-		
-		for(int i = 0; i < size - 1; i++) {
-			pushQueue.enQueue(popQueue.deQueue());
-		}
-		
-		data = popQueue.deQueue();
 
 		return data;
 	}
