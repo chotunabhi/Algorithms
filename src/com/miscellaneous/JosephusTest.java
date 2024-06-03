@@ -4,9 +4,6 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-import com.linkedList.CircularListNode;
-import com.linkedList.NodeSLL;
-
 public class JosephusTest {
 
 	public static void main(String[] args) throws NumberFormatException, IOException {
@@ -46,7 +43,7 @@ public class JosephusTest {
 	 * @return person finally who survives
 	 */
 	public static int josephusCll(int n, int k) {
-		CircularListNode<Integer> circle = new CircularListNode<>();
+/*		CircularListNode<Integer> circle = new CircularListNode<>();
 
 		for (int i = 1; i <= n; i++)
 			circle.insertAtTail(i);
@@ -65,6 +62,7 @@ public class JosephusTest {
 			killer = killer.next;
 		}
 		
-		return killer.data;
+		return killer.data;*/
+		return -1;
 	}
 }
