@@ -44,16 +44,33 @@ public class Stack<T extends Comparable<T>>  {
 	}
 
 	public void push(T data) {
+		NodeSLL<T> node = new NodeSLL<T>(data);
+		
+		if(!isEmpty()) 
+			node.setNext(top);
+		size++;
+		top = node; 
 	}
 	public T pop() {
 		T data = null;
 
+		if(isEmpty())
+			throw new EmptyStackException();
+		
+		data = top.getData();
+		top.setNext(top.getNext());
+		
 		return data;
 	}
 
 	public T peek() {
 		T data = null;
 
+		if(isEmpty())
+			throw new EmptyStackException();
+		
+		data = top.getData();
+		
 		return data;
 	}
 
