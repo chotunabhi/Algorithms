@@ -10,6 +10,7 @@ public class InfixToPostFix {
 
 		StringBuffer postFix = new StringBuffer();
 		
+		
 		return postFix.toString();
 	}
 
