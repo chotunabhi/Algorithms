@@ -15,13 +15,12 @@ public class QueueUsingStacks<T extends Comparable<T>> {
 	public T deQueue() throws IllegalStateException {
 		if(isEmpty())
 			throw new EmptyStackException();
-
+		
 		T data = null;
-
-		if(popStack.isEmpty()) 
-			while(!pushStack.isEmpty())
-				popStack.push(pushStack.pop());
-
+		
+		while(!pushStack.isEmpty())
+			popStack.push(pushStack.pop());
+		
 		data = popStack.pop();
 
 		return data;

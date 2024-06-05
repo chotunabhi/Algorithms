@@ -15,12 +15,14 @@ public class StackUsingQueues<T extends Comparable<T>> {
 	}
 	
 	public void push(T data) {
-		
+
 	}
 
 	public T pop() throws EmptyStackException {
 		T data = null;
 
+		
+		
 		return data;
 	}
 
