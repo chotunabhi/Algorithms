@@ -13,17 +13,15 @@ public class QueueUsingStacks<T extends Comparable<T>> {
 	}
 
 	public T deQueue() throws IllegalStateException {
-		if(isEmpty())
+		if(popStack.isEmpty()) {
+			while(!pushStack.isEmpty())
+				popStack.push(pushStack.pop());
+		}
+		
+		if(popStack.isEmpty())
 			throw new EmptyStackException();
 		
-		T data = null;
-		
-		while(!pushStack.isEmpty())
-			popStack.push(pushStack.pop());
-		
-		data = popStack.pop();
-
-		return data;
+		return popStack.pop();
 	}
 
 	public boolean isEmpty() {
@@ -69,6 +67,8 @@ public class QueueUsingStacks<T extends Comparable<T>> {
 		for (int i = 51; i <= 100; i++) {
 			queue.enQueue(i);
 		}
+		System.out.println(queue);
+		System.out.println(queue.deQueue());
 		System.out.println(queue);
 	}
 }

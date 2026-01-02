@@ -1,6 +1,5 @@
 package com.dsnalgomadeeasy.queue.problems;
 
-import java.lang.reflect.Array;
 import java.util.EmptyStackException;
 
 import com.dsnalgomadeeasy.queue.common.CQueue;
